@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="de-CH">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Warenkorb – GreenNest</title>
+  <meta
+    name="description"
+    content="Prüfe deinen Warenkorb im GreenNest Webshop und starte den Checkout."
+  />
+
+  <link rel="stylesheet" href="style.css" />
+  <script src="script.js" defer></script>
+</head>
+
+<body>
+  <a class="skip-link" href="#main-content">Direkt zum Inhalt</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="brand" aria-label="GreenNest Startseite">
+        <span class="brand-mark">GN</span>
+        <span class="brand-text">GreenNest</span>
+      </a>
+
+      <nav class="main-nav" aria-label="Hauptnavigation">
+        <a href="produkte.html">Pflanzen</a>
+        <a href="produkte.html#pflegeleicht">Pflegeleicht</a>
+        <a href="produkte.html#zubehoer">Zubehör</a>
+        <a href="index.html#beratung">Beratung</a>
+      </nav>
+
+      <div class="header-actions">
+        <a class="icon-link" href="produkte.html#produktsuche">Suchen</a>
+
+        <a class="cart-pill" href="warenkorb.html" aria-label="Warenkorb öffnen" aria-current="page">
+          Warenkorb
+          <span class="cart-count">2</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <section class="cart-page-section">
+      <div class="container">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="index.html">Startseite</a>
+          <span>/</span>
+          <span>Warenkorb</span>
+        </nav>
+
+        <div class="cart-page-header">
+          <div>
+            <p class="section-kicker">Dein Warenkorb</p>
+            <h1>Prüfe deine Auswahl vor dem Checkout.</h1>
+            <p class="hero-lead">
+              Du kannst Mengen ändern, Produkte entfernen oder direkt mit dem Gastkauf fortfahren.
+            </p>
+          </div>
+
+          <a class="btn btn-secondary" href="produkte.html">
+            Weiter einkaufen
+          </a>
+        </div>
+
+        <div class="cart-layout" data-cart-content>
+          <section class="cart-items" aria-label="Produkte im Warenkorb">
+            <article
+              class="cart-item"
+              data-cart-item
+              data-price="34.90"
+            >
+              <div class="cart-item-image">
+                <img
+                  src="assets/images/monstera-easy.jpg"
+                  alt="Monstera Easy Zimmerpflanze"
+                />
+              </div>
+
+              <div class="cart-item-content">
+                <div class="cart-item-main">
+                  <div>
+                    <p class="product-category">Pflegeleicht · hell bis halbschattig</p>
+                    <h2>Monstera Easy</h2>
+                    <p class="cart-item-description">
+                      Topfgrösse S · ca. 35 cm · Pflegekarte inklusive
+                    </p>
+                  </div>
+
+                  <p class="cart-item-price">CHF 34.90</p>
+                </div>
+
+                <div class="cart-item-controls">
+                  <label>
+                    Menge
+                    <select data-cart-qty aria-label="Menge Monstera Easy">
+                      <option value="1" selected>1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                    </select>
+                  </label>
+
+                  <button class="text-button danger-button" type="button" data-cart-remove>
+                    Entfernen
+                  </button>
+
+                  <p class="cart-line-total" data-cart-line-total>
+                    CHF 34.90
+                  </p>
+                </div>
+              </div>
+            </article>
+
+            <article
+              class="cart-item"
+              data-cart-item
+              data-price="16.90"
+            >
+              <div class="cart-item-image">
+                <img
+                  src="assets/images/keramiktopf-sand.jpg"
+                  alt="Keramiktopf Sand"
+                />
+              </div>
+
+              <div class="cart-item-content">
+                <div class="cart-item-main">
+                  <div>
+                    <p class="product-category">Zubehör · Keramik</p>
+                    <h2>Keramiktopf Sand</h2>
+                    <p class="cart-item-description">
+                      Schlichter Übertopf in Sandfarbe · passend zur Monstera Easy
+                    </p>
+                  </div>
+
+                  <p class="cart-item-price">CHF 16.90</p>
+                </div>
+
+                <div class="cart-item-controls">
+                  <label>
+                    Menge
+                    <select data-cart-qty aria-label="Menge Keramiktopf Sand">
+                      <option value="1" selected>1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                    </select>
+                  </label>
+
+                  <button class="text-button danger-button" type="button" data-cart-remove>
+                    Entfernen
+                  </button>
+
+                  <p class="cart-line-total" data-cart-line-total>
+                    CHF 16.90
+                  </p>
+                </div>
+              </div>
+            </article>
+
+            <div class="cart-note">
+              <span>🌱</span>
+              <div>
+                <h2>Gut zu wissen</h2>
+                <p>
+                  Deine Pflanzen werden erst kurz vor dem Versand verpackt. So bleiben sie frisch
+                  und kommen geschützt bei dir an.
+                </p>
+              </div>
+            </div>
+          </section>
+
+          <aside class="cart-summary" aria-label="Bestellübersicht">
+            <h2>Bestellübersicht</h2>
+
+            <div class="summary-line">
+              <span>Zwischensumme</span>
+              <strong data-subtotal>CHF 51.80</strong>
+            </div>
+
+            <div class="summary-line">
+              <span>Versand</span>
+              <strong data-shipping>CHF 6.90</strong>
+            </div>
+
+            <div class="summary-line">
+              <span>Rabatt</span>
+              <strong>CHF 0.00</strong>
+            </div>
+
+            <div class="summary-total">
+              <span>Total</span>
+              <strong data-total>CHF 58.70</strong>
+            </div>
+
+            <a class="btn btn-primary full-width" href="checkout-start.html">
+              Zur Kasse
+            </a>
+
+            <p class="summary-helper">
+              Gastkauf möglich. Du brauchst kein Kundenkonto, um die Bestellung abzuschliessen.
+            </p>
+
+            <div class="summary-benefits">
+              <article>
+                <span>🔒</span>
+                <p>Sichere Zahlung</p>
+              </article>
+
+              <article>
+                <span>📦</span>
+                <p>Lieferung in 2–3 Werktagen</p>
+              </article>
+
+              <article>
+                <span>↩️</span>
+                <p>30 Tage Rückgaberecht</p>
+              </article>
+            </div>
+          </aside>
+        </div>
+
+        <div class="empty-cart" data-empty-cart hidden>
+          <div class="feature-icon">🛒</div>
+          <h2>Dein Warenkorb ist leer</h2>
+          <p>
+            Du hast alle Produkte entfernt. Entdecke passende Pflanzen und Zubehör im Shop.
+          </p>
+          <a class="btn btn-primary" href="produkte.html">
+            Produkte ansehen
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <a href="index.html" class="footer-brand">GreenNest</a>
+        <p>
+          Nachhaltige Pflanzen und Zubehör für ein grüneres Zuhause.
+          Dieser Prototyp zeigt den vollständigen Kaufprozess.
+        </p>
+      </div>
+
+      <div>
+        <h2>Shop</h2>
+        <a href="produkte.html">Pflanzen</a>
+        <a href="produkte.html#zubehoer">Zubehör</a>
+        <a href="checkout-start.html">Checkout</a>
+      </div>
+
+      <div>
+        <h2>UX-Fokus</h2>
+        <p>
+          Der Warenkorb zeigt Menge, Preis, Zwischensumme, Versandkosten und einen klaren nächsten Schritt.
+        </p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

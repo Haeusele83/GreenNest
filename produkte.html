@@ -3,8 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Pflanzen kaufen – GreenNest</title>
-  <meta name="description" content="Pflegeleichte Zimmerpflanzen, Zubehör und nachhaltige Pflanzenpakete bei GreenNest entdecken." />
+
+  <title>Produkte – GreenNest</title>
+  <meta
+    name="description"
+    content="Entdecke pflegeleichte Zimmerpflanzen und nachhaltiges Zubehör im GreenNest Webshop."
+  />
+
   <link rel="stylesheet" href="style.css" />
   <script src="script.js" defer></script>
 </head>
@@ -28,6 +33,7 @@
 
       <div class="header-actions">
         <a class="icon-link" href="#produktsuche">Suchen</a>
+
         <a class="cart-pill" href="warenkorb.html" aria-label="Warenkorb öffnen">
           Warenkorb
           <span class="cart-count">1</span>
@@ -37,48 +43,79 @@
   </header>
 
   <main id="main-content">
-    <section class="listing-hero">
+    <section class="catalog-hero">
       <div class="container">
         <nav class="breadcrumb" aria-label="Breadcrumb">
           <a href="index.html">Startseite</a>
           <span>/</span>
-          <span>Pflanzen</span>
+          <span>Produkte</span>
         </nav>
 
-        <div class="listing-hero-grid">
-          <div>
-            <p class="section-kicker">Pflanzen entdecken</p>
-            <h1>Pflegeleichte Zimmerpflanzen für jeden Alltag.</h1>
+        <div class="catalog-hero-grid">
+          <div class="catalog-hero-content">
+            <p class="section-kicker">Pflanzen & Zubehör</p>
+            <h1>Pflanzen & Zubehör für ein grüneres Zuhause.</h1>
             <p class="hero-lead">
-              Filtere nach Licht, Pflegelevel und Raumtyp. So findest du schneller eine Pflanze,
-              die wirklich zu dir passt.
+              Finde pflegeleichte Zimmerpflanzen, passende Töpfe und nachhaltiges Zubehör.
+              Die Produktkarten zeigen dir sofort Pflegelevel, Lichtbedarf und Lieferinformationen.
             </p>
           </div>
 
-          <div class="listing-highlight">
-            <strong>UX-Hinweis</strong>
-            <p>
-              Die Produktübersicht unterstützt Einsteigerinnen und Einsteiger mit einfachen Filtern,
-              klaren Karten und sichtbaren Pflegeinformationen.
-            </p>
+          <div class="catalog-hero-image">
+            <img
+              src="assets/images/hero-produkte.jpg"
+              alt="Mehrere Zimmerpflanzen in hellen Töpfen"
+            />
           </div>
         </div>
       </div>
     </section>
 
-    <section class="container product-layout" aria-label="Produktübersicht">
-      <aside class="filter-panel" aria-label="Filter">
+    <section class="catalog-benefits" aria-label="Vorteile von GreenNest">
+      <div class="container catalog-benefit-grid">
+        <article class="catalog-benefit">
+          <span class="benefit-symbol">🌿</span>
+          <div>
+            <h2>Für Einsteiger geeignet</h2>
+            <p>Einfache Pflege, klare Tipps</p>
+          </div>
+        </article>
+
+        <article class="catalog-benefit">
+          <span class="benefit-symbol">♻️</span>
+          <div>
+            <h2>Nachhaltig & torffrei</h2>
+            <p>Bessere Erde für deine Pflanzen</p>
+          </div>
+        </article>
+
+        <article class="catalog-benefit">
+          <span class="benefit-symbol">📦</span>
+          <div>
+            <h2>Schnelle Lieferung</h2>
+            <p>2–3 Werktage, sicher verpackt</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="container product-layout" id="pflegeleicht" aria-label="Produktübersicht">
+      <aside class="filter-panel" aria-label="Produktfilter">
         <div class="filter-header">
           <h2>Filter</h2>
-          <button class="text-button" type="button" data-reset-filters>Zurücksetzen</button>
+          <button class="text-button" type="button" data-reset-filters>
+            Zurücksetzen
+          </button>
         </div>
 
         <div class="filter-group">
           <h3>Pflegelevel</h3>
+
           <label class="filter-option">
             <input type="checkbox" value="einfach" data-filter="level" />
             Einfach
           </label>
+
           <label class="filter-option">
             <input type="checkbox" value="mittel" data-filter="level" />
             Mittel
@@ -87,14 +124,17 @@
 
         <div class="filter-group">
           <h3>Lichtbedarf</h3>
+
           <label class="filter-option">
             <input type="checkbox" value="hell" data-filter="light" />
             Hell
           </label>
+
           <label class="filter-option">
             <input type="checkbox" value="halbschatten" data-filter="light" />
             Halbschatten
           </label>
+
           <label class="filter-option">
             <input type="checkbox" value="schatten" data-filter="light" />
             Schatten
@@ -103,29 +143,43 @@
 
         <div class="filter-group">
           <h3>Raum</h3>
+
           <label class="filter-option">
             <input type="checkbox" value="wohnzimmer" data-filter="room" />
             Wohnzimmer
           </label>
+
           <label class="filter-option">
             <input type="checkbox" value="buero" data-filter="room" />
             Büro
           </label>
+
           <label class="filter-option">
             <input type="checkbox" value="schlafzimmer" data-filter="room" />
             Schlafzimmer
           </label>
+        </div>
+
+        <div class="filter-help-box">
+          <div class="feature-icon">🌱</div>
+          <h3>Unsicher bei der Auswahl?</h3>
+          <p>
+            Starte mit pflegeleichten Pflanzen und wähle danach nach Lichtbedarf.
+          </p>
+          <a class="btn btn-primary full-width" href="index.html#beratung">
+            Beratung ansehen
+          </a>
         </div>
       </aside>
 
       <div class="product-results">
         <div class="toolbar" id="produktsuche">
           <div class="search-field">
-            <label for="product-search">Pflanze suchen</label>
+            <label for="product-search">Produkt suchen</label>
             <input
               id="product-search"
               type="search"
-              placeholder="z. B. Monstera, Calathea oder Zubehör"
+              placeholder="Nach Pflanzen, Zubehör oder Eigenschaften suchen ..."
               data-product-search
             />
           </div>
@@ -141,7 +195,7 @@
         </div>
 
         <div class="result-summary" aria-live="polite">
-          <p><strong data-result-count>6</strong> Produkte gefunden</p>
+          <p><strong data-result-count>12</strong> Produkte gefunden</p>
           <p class="muted-text">Alle Preise inkl. MwSt., ohne Versandkosten.</p>
         </div>
 
@@ -156,25 +210,29 @@
           >
             <a href="produkt-detail.html" class="product-image product-image-card">
               <img
-                src="https://images.unsplash.com/photo-1614594975525-e45190c55d0b?auto=format&fit=crop&w=900&q=80"
-                alt="Monstera Zimmerpflanze in einem hellen Raum"
+                src="assets/images/monstera-easy.jpg"
+                alt="Monstera Zimmerpflanze in hellem Topf"
+                loading="lazy"
               />
               <span class="product-badge">Bestseller</span>
             </a>
 
             <div class="product-card-content">
+              <div class="product-icon-row" aria-label="Eigenschaften">
+                <span title="hell bis halbschattig">☀️</span>
+                <span title="mässig giessen">💧</span>
+                <span title="pflegeleicht">🌿</span>
+              </div>
+
               <p class="product-category">Pflegeleicht · hell bis halbschattig</p>
               <h2><a href="produkt-detail.html">Monstera Easy</a></h2>
               <p>Robuste Zimmerpflanze mit grossen Blättern und klaren Pflegehinweisen.</p>
 
-              <div class="tag-row">
-                <span>Einfach</span>
-                <span>2–3 Tage</span>
-              </div>
-
               <div class="product-buy-row">
                 <p class="price">CHF 34.90</p>
-                <button class="btn btn-primary" type="button" data-add-to-cart>In Warenkorb</button>
+                <button class="btn btn-primary" type="button" data-add-to-cart>
+                  In Warenkorb
+                </button>
               </div>
             </div>
           </article>
@@ -189,25 +247,66 @@
           >
             <a href="produkt-detail.html" class="product-image product-image-card">
               <img
-                src="https://images.unsplash.com/photo-1593691509543-c55fb32e7355?auto=format&fit=crop&w=900&q=80"
-                alt="Sansevieria Pflanze in einem Topf"
+                src="assets/images/sansevieria-calm.jpg"
+                alt="Sansevieria Zimmerpflanze in schlichtem Topf"
+                loading="lazy"
               />
               <span class="product-badge">Sehr robust</span>
             </a>
 
             <div class="product-card-content">
+              <div class="product-icon-row" aria-label="Eigenschaften">
+                <span title="hell bis schattig">☀️</span>
+                <span title="wenig Wasser">💧</span>
+                <span title="sehr robust">🌿</span>
+              </div>
+
               <p class="product-category">Sehr pflegeleicht · wenig Wasser</p>
               <h2><a href="produkt-detail.html">Sansevieria Calm</a></h2>
               <p>Ideal für Personen, die wenig Zeit haben oder oft vergessen zu giessen.</p>
 
-              <div class="tag-row">
-                <span>Einfach</span>
-                <span>wenig Wasser</span>
-              </div>
-
               <div class="product-buy-row">
                 <p class="price">CHF 29.90</p>
-                <button class="btn btn-primary" type="button" data-add-to-cart>In Warenkorb</button>
+                <button class="btn btn-primary" type="button" data-add-to-cart>
+                  In Warenkorb
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <article
+            class="product-card"
+            data-name="Pothos Starter"
+            data-level="einfach"
+            data-light="hell halbschatten schatten"
+            data-room="wohnzimmer buero"
+            data-price="24.90"
+          >
+            <a href="produkt-detail.html" class="product-image product-image-card">
+              <img
+                src="assets/images/pothos-starter.jpg"
+                alt="Pothos Hängepflanze in weissem Topf"
+                loading="lazy"
+              />
+              <span class="product-badge">Einsteiger</span>
+            </a>
+
+            <div class="product-card-content">
+              <div class="product-icon-row" aria-label="Eigenschaften">
+                <span title="hell bis schattig">☀️</span>
+                <span title="normal giessen">💧</span>
+                <span title="pflegeleicht">🌿</span>
+              </div>
+
+              <p class="product-category">Pflegeleicht · wächst schnell</p>
+              <h2><a href="produkt-detail.html">Pothos Starter</a></h2>
+              <p>Unkomplizierte Hängepflanze für Regale, Büros und kleine Wohnungen.</p>
+
+              <div class="product-buy-row">
+                <p class="price">CHF 24.90</p>
+                <button class="btn btn-primary" type="button" data-add-to-cart>
+                  In Warenkorb
+                </button>
               </div>
             </div>
           </article>
@@ -222,58 +321,66 @@
           >
             <a href="produkt-detail.html" class="product-image product-image-card">
               <img
-                src="https://images.unsplash.com/photo-1620317827392-9e53eaa6f258?auto=format&fit=crop&w=900&q=80"
+                src="assets/images/calathea-soft.jpg"
                 alt="Calathea Zimmerpflanze mit dekorativen Blättern"
+                loading="lazy"
               />
               <span class="product-badge">Dekorativ</span>
             </a>
 
             <div class="product-card-content">
+              <div class="product-icon-row" aria-label="Eigenschaften">
+                <span title="halbschattig">🌤️</span>
+                <span title="regelmässig giessen">💧</span>
+                <span title="mittlere Pflege">🌿</span>
+              </div>
+
               <p class="product-category">Mittel · liebt Luftfeuchtigkeit</p>
               <h2><a href="produkt-detail.html">Calathea Soft</a></h2>
               <p>Dekorative Pflanze für ruhige Räume mit indirektem Licht.</p>
 
-              <div class="tag-row">
-                <span>Mittel</span>
-                <span>halbschattig</span>
-              </div>
-
               <div class="product-buy-row">
                 <p class="price">CHF 39.90</p>
-                <button class="btn btn-primary" type="button" data-add-to-cart>In Warenkorb</button>
+                <button class="btn btn-primary" type="button" data-add-to-cart>
+                  In Warenkorb
+                </button>
               </div>
             </div>
           </article>
 
           <article
             class="product-card"
-            data-name="Pothos Starter"
-            data-level="einfach"
-            data-light="hell halbschatten schatten"
-            data-room="buero wohnzimmer"
-            data-price="24.90"
+            data-name="Ficus Elastica Green"
+            data-level="mittel"
+            data-light="hell"
+            data-room="wohnzimmer buero"
+            data-price="44.90"
           >
             <a href="produkt-detail.html" class="product-image product-image-card">
               <img
-                src="https://images.unsplash.com/photo-1600411833115-6f1b5f8577d5?auto=format&fit=crop&w=900&q=80"
-                alt="Hängende Pothos Zimmerpflanze"
+                src="assets/images/ficus-elastica-green.jpg"
+                alt="Ficus Elastica Zimmerpflanze mit glänzenden Blättern"
+                loading="lazy"
               />
-              <span class="product-badge">Einsteiger</span>
+              <span class="product-badge">Premium</span>
             </a>
 
             <div class="product-card-content">
-              <p class="product-category">Pflegeleicht · wächst schnell</p>
-              <h2><a href="produkt-detail.html">Pothos Starter</a></h2>
-              <p>Unkomplizierte Hängepflanze für Regale, Büros und kleine Wohnungen.</p>
-
-              <div class="tag-row">
-                <span>Einfach</span>
-                <span>schnell wachsend</span>
+              <div class="product-icon-row" aria-label="Eigenschaften">
+                <span title="heller Standort">☀️</span>
+                <span title="mässig giessen">💧</span>
+                <span title="mittlere Pflege">🌿</span>
               </div>
 
+              <p class="product-category">Mittel · heller Standort</p>
+              <h2><a href="produkt-detail.html">Ficus Elastica Green</a></h2>
+              <p>Elegante Pflanze mit kräftigen Blättern für moderne Wohn- und Arbeitsräume.</p>
+
               <div class="product-buy-row">
-                <p class="price">CHF 24.90</p>
-                <button class="btn btn-primary" type="button" data-add-to-cart>In Warenkorb</button>
+                <p class="price">CHF 44.90</p>
+                <button class="btn btn-primary" type="button" data-add-to-cart>
+                  In Warenkorb
+                </button>
               </div>
             </div>
           </article>
@@ -288,31 +395,183 @@
           >
             <a href="produkt-detail.html" class="product-image product-image-card">
               <img
-                src="https://images.unsplash.com/photo-1620127807580-990c3ab7b935?auto=format&fit=crop&w=900&q=80"
-                alt="Friedenslilie mit weisser Blüte"
+                src="assets/images/peace-lily-home.jpg"
+                alt="Friedenslilie mit weissen Blüten in hellem Topf"
+                loading="lazy"
               />
               <span class="product-badge">Luftfeuchte</span>
             </a>
 
             <div class="product-card-content">
+              <div class="product-icon-row" aria-label="Eigenschaften">
+                <span title="halbschattig bis schattig">🌤️</span>
+                <span title="regelmässig giessen">💧</span>
+                <span title="mittlere Pflege">🌿</span>
+              </div>
+
               <p class="product-category">Mittel · ruhige Räume</p>
               <h2><a href="produkt-detail.html">Peace Lily Home</a></h2>
               <p>Elegante Pflanze mit weisser Blüte für halbschattige Innenräume.</p>
 
-              <div class="tag-row">
-                <span>Mittel</span>
-                <span>halbschattig</span>
-              </div>
-
               <div class="product-buy-row">
                 <p class="price">CHF 32.90</p>
-                <button class="btn btn-primary" type="button" data-add-to-cart>In Warenkorb</button>
+                <button class="btn btn-primary" type="button" data-add-to-cart>
+                  In Warenkorb
+                </button>
               </div>
             </div>
           </article>
 
           <article
+            class="product-card"
+            data-name="Aloe Vera Pure"
+            data-level="einfach"
+            data-light="hell"
+            data-room="wohnzimmer buero"
+            data-price="22.90"
+          >
+            <a href="produkt-detail.html" class="product-image product-image-card">
+              <img
+                src="assets/images/aloe-vera-pure.jpg"
+                alt="Aloe Vera Pflanze in kleinem Topf"
+                loading="lazy"
+              />
+              <span class="product-badge">Sonnig</span>
+            </a>
+
+            <div class="product-card-content">
+              <div class="product-icon-row" aria-label="Eigenschaften">
+                <span title="sonnig">☀️</span>
+                <span title="wenig Wasser">💧</span>
+                <span title="pflegeleicht">🌿</span>
+              </div>
+
+              <p class="product-category">Einfach · sonniger Standort</p>
+              <h2><a href="produkt-detail.html">Aloe Vera Pure</a></h2>
+              <p>Pflegeleichte Sukkulente für helle Fensterplätze und trockene Räume.</p>
+
+              <div class="product-buy-row">
+                <p class="price">CHF 22.90</p>
+                <button class="btn btn-primary" type="button" data-add-to-cart>
+                  In Warenkorb
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <article
+            class="product-card"
+            data-name="ZZ Plant Robust"
+            data-level="einfach"
+            data-light="halbschatten schatten"
+            data-room="buero wohnzimmer schlafzimmer"
+            data-price="36.90"
+          >
+            <a href="produkt-detail.html" class="product-image product-image-card">
+              <img
+                src="assets/images/zz-plant-robust.jpg"
+                alt="ZZ Plant mit kräftigen grünen Blättern"
+                loading="lazy"
+              />
+              <span class="product-badge">Robust</span>
+            </a>
+
+            <div class="product-card-content">
+              <div class="product-icon-row" aria-label="Eigenschaften">
+                <span title="wenig Licht">🌤️</span>
+                <span title="wenig Wasser">💧</span>
+                <span title="pflegeleicht">🌿</span>
+              </div>
+
+              <p class="product-category">Einfach · wenig Licht</p>
+              <h2><a href="produkt-detail.html">ZZ Plant Robust</a></h2>
+              <p>Sehr robuste Pflanze für Büros, Flure und Räume mit weniger Licht.</p>
+
+              <div class="product-buy-row">
+                <p class="price">CHF 36.90</p>
+                <button class="btn btn-primary" type="button" data-add-to-cart>
+                  In Warenkorb
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <article
+            class="product-card"
             id="zubehoer"
+            data-name="Keramiktopf Sand"
+            data-level="einfach"
+            data-light="hell halbschatten schatten"
+            data-room="wohnzimmer buero schlafzimmer"
+            data-price="16.90"
+          >
+            <a href="produkt-detail.html" class="product-image product-image-card">
+              <img
+                src="assets/images/keramiktopf-sand.jpg"
+                alt="Schlichter Keramiktopf in Sandfarbe"
+                loading="lazy"
+              />
+              <span class="product-badge">Neu</span>
+            </a>
+
+            <div class="product-card-content">
+              <div class="product-icon-row" aria-label="Eigenschaften">
+                <span title="Zubehör">🪴</span>
+                <span title="Keramik">◯</span>
+                <span title="natürlicher Look">🌿</span>
+              </div>
+
+              <p class="product-category">Zubehör · Keramik</p>
+              <h2><a href="produkt-detail.html">Keramiktopf Sand</a></h2>
+              <p>Schlichter Übertopf in natürlicher Sandfarbe. Passt zu den meisten Pflanzen.</p>
+
+              <div class="product-buy-row">
+                <p class="price">CHF 16.90</p>
+                <button class="btn btn-primary" type="button" data-add-to-cart>
+                  In Warenkorb
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <article
+            class="product-card"
+            data-name="Bio Pflanzenerde"
+            data-level="einfach"
+            data-light="hell halbschatten schatten"
+            data-room="wohnzimmer buero schlafzimmer"
+            data-price="12.90"
+          >
+            <a href="produkt-detail.html" class="product-image product-image-card">
+              <img
+                src="assets/images/bio-pflanzenerde.jpg"
+                alt="Sack mit torffreier Bio-Pflanzenerde"
+                loading="lazy"
+              />
+              <span class="product-badge">Torffrei</span>
+            </a>
+
+            <div class="product-card-content">
+              <div class="product-icon-row" aria-label="Eigenschaften">
+                <span title="torffrei">🌱</span>
+                <span title="nachhaltig">♻️</span>
+                <span title="für Zimmerpflanzen">🪴</span>
+              </div>
+
+              <p class="product-category">Zubehör · nachhaltig</p>
+              <h2><a href="produkt-detail.html">Bio Pflanzenerde</a></h2>
+              <p>Torffreie Erde für Zimmerpflanzen. Geeignet für Umtopfen und Pflege.</p>
+
+              <div class="product-buy-row">
+                <p class="price">CHF 12.90</p>
+                <button class="btn btn-primary" type="button" data-add-to-cart>
+                  In Warenkorb
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <article
             class="product-card"
             data-name="Pflege Starter Set"
             data-level="einfach"
@@ -322,25 +581,66 @@
           >
             <a href="produkt-detail.html" class="product-image product-image-card">
               <img
-                src="https://images.unsplash.com/photo-1617576683096-00fc8eecb3af?auto=format&fit=crop&w=900&q=80"
-                alt="Pflanzenpflege Zubehör mit Sprühflasche und Erde"
+                src="assets/images/pflege-starter-set.jpg"
+                alt="Pflanzenpflege Starter Set mit Sprühflasche und Pflegekarte"
+                loading="lazy"
+              />
+              <span class="product-badge">Starter Set</span>
+            </a>
+
+            <div class="product-card-content">
+              <div class="product-icon-row" aria-label="Eigenschaften">
+                <span title="Pflege">💧</span>
+                <span title="Starter Set">✓</span>
+                <span title="einfach">🌿</span>
+              </div>
+
+              <p class="product-category">Zubehör · für den Start</p>
+              <h2><a href="produkt-detail.html">Pflege Starter Set</a></h2>
+              <p>Sprühflasche, Pflegekarte und kleine Giesshilfe für den einfachen Start.</p>
+
+              <div class="product-buy-row">
+                <p class="price">CHF 19.90</p>
+                <button class="btn btn-primary" type="button" data-add-to-cart>
+                  In Warenkorb
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <article
+            class="product-card"
+            data-name="Giesskanne Minimal"
+            data-level="einfach"
+            data-light="hell halbschatten schatten"
+            data-room="wohnzimmer buero schlafzimmer"
+            data-price="21.90"
+          >
+            <a href="produkt-detail.html" class="product-image product-image-card">
+              <img
+                src="assets/images/giesskanne-minimal.jpg"
+                alt="Schlichte grüne Giesskanne für Zimmerpflanzen"
+                loading="lazy"
               />
               <span class="product-badge">Zubehör</span>
             </a>
 
             <div class="product-card-content">
-              <p class="product-category">Zubehör · für den Start</p>
-              <h2><a href="produkt-detail.html">Pflege Starter Set</a></h2>
-              <p>Sprühflasche, Pflegekarte und kleine Giesshilfe für Einsteigerinnen und Einsteiger.</p>
-
-              <div class="tag-row">
-                <span>Einfach</span>
-                <span>Set</span>
+              <div class="product-icon-row" aria-label="Eigenschaften">
+                <span title="Giessen">💧</span>
+                <span title="Indoor">🏠</span>
+                <span title="Zubehör">🪴</span>
               </div>
 
+              <p class="product-category">Zubehör · Pflege</p>
+              <h2><a href="produkt-detail.html">Giesskanne Minimal</a></h2>
+              <p>Kleine Giesskanne mit schmaler Tülle für präzises Giessen im Innenbereich.</p>
+
               <div class="product-buy-row">
-                <p class="price">CHF 19.90</p>
-                <button class="btn btn-primary" type="button" data-add-to-cart>In Warenkorb</button>
+                <p class="price">CHF 21.90</p>
+                <button class="btn btn-primary" type="button" data-add-to-cart>
+                  In Warenkorb
+                </button>
               </div>
             </div>
           </article>
@@ -349,8 +649,46 @@
         <div class="empty-state" data-empty-state hidden>
           <h2>Keine passenden Produkte gefunden</h2>
           <p>Ändere deine Suche oder setze die Filter zurück.</p>
-          <button class="btn btn-secondary" type="button" data-reset-filters>Filter zurücksetzen</button>
+          <button class="btn btn-secondary" type="button" data-reset-filters>
+            Filter zurücksetzen
+          </button>
         </div>
+      </div>
+    </section>
+
+    <section class="catalog-footer-benefits" aria-label="Servicevorteile">
+      <div class="container catalog-footer-benefit-grid">
+        <article>
+          <span>🔒</span>
+          <div>
+            <h2>Sichere Zahlung</h2>
+            <p>Verschlüsselt & geschützt</p>
+          </div>
+        </article>
+
+        <article>
+          <span>✓</span>
+          <div>
+            <h2>Zufriedenheitsgarantie</h2>
+            <p>30 Tage Rückgaberecht</p>
+          </div>
+        </article>
+
+        <article>
+          <span>💬</span>
+          <div>
+            <h2>Persönlicher Support</h2>
+            <p>Wir sind für dich da</p>
+          </div>
+        </article>
+
+        <article>
+          <span>♻️</span>
+          <div>
+            <h2>Klimaneutraler Versand</h2>
+            <p>Nachhaltig geliefert</p>
+          </div>
+        </article>
       </div>
     </section>
   </main>
@@ -359,19 +697,25 @@
     <div class="container footer-grid">
       <div>
         <a href="index.html" class="footer-brand">GreenNest</a>
-        <p>High-Fidelity-Klickprototyp für den Transferbericht.</p>
+        <p>
+          Nachhaltige Pflanzen und Zubehör für ein grüneres Zuhause.
+          Dieser Prototyp zeigt den vollständigen Kaufprozess.
+        </p>
       </div>
 
       <div>
-        <h2>Service</h2>
+        <h2>Shop</h2>
         <a href="produkte.html">Pflanzen</a>
+        <a href="#zubehoer">Zubehör</a>
         <a href="warenkorb.html">Warenkorb</a>
-        <a href="checkout-start.html">Checkout</a>
       </div>
 
       <div>
         <h2>UX-Fokus</h2>
-        <p>Filter, Suchfeld, klare Produktkarten und sichtbare Pflegeinformationen.</p>
+        <p>
+          Suche, Filter, Sortierung, klare Produktkarten und ein geführter Checkout
+          unterstützen den Kaufprozess.
+        </p>
       </div>
     </div>
   </footer>

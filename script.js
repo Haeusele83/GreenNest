@@ -140,3 +140,88 @@ document.addEventListener("DOMContentLoaded", () => {
 
   updateProducts();
 });
+document.addEventListener("DOMContentLoaded", () => {
+  const cartItems = Array.from(document.querySelectorAll("[data-cart-item]"));
+  const subtotalElement = document.querySelector("[data-subtotal]");
+  const shippingElement = document.querySelector("[data-shipping]");
+  const totalElement = document.querySelector("[data-total]");
+  const cartCount = document.querySelector(".cart-count");
+  const emptyCart = document.querySelector("[data-empty-cart]");
+  const cartContent = document.querySelector("[data-cart-content]");
+
+  if (cartItems.length === 0) {
+    return;
+  }
+
+  const formatCHF = (value) => {
+    return `CHF ${value.toFixed(2)}`;
+  };
+
+  function updateCart() {
+    let subtotal = 0;
+    let itemCount = 0;
+
+    cartItems.forEach((item) => {
+      if (item.hidden) {
+        return;
+      }
+
+      const price = Number(item.dataset.price);
+      const quantitySelect = item.querySelector("[data-cart-qty]");
+      const lineTotalElement = item.querySelector("[data-cart-line-total]");
+      const quantity = Number(quantitySelect.value);
+
+      const lineTotal = price * quantity;
+
+      subtotal += lineTotal;
+      itemCount += quantity;
+
+      if (lineTotalElement) {
+        lineTotalElement.textContent = formatCHF(lineTotal);
+      }
+    });
+
+    const shipping = subtotal > 0 ? 6.9 : 0;
+    const total = subtotal + shipping;
+
+    if (subtotalElement) {
+      subtotalElement.textContent = formatCHF(subtotal);
+    }
+
+    if (shippingElement) {
+      shippingElement.textContent = formatCHF(shipping);
+    }
+
+    if (totalElement) {
+      totalElement.textContent = formatCHF(total);
+    }
+
+    if (cartCount) {
+      cartCount.textContent = String(itemCount);
+    }
+
+    if (emptyCart && cartContent) {
+      const isEmpty = itemCount === 0;
+      emptyCart.hidden = !isEmpty;
+      cartContent.hidden = isEmpty;
+    }
+  }
+
+  cartItems.forEach((item) => {
+    const quantitySelect = item.querySelector("[data-cart-qty]");
+    const removeButton = item.querySelector("[data-cart-remove]");
+
+    if (quantitySelect) {
+      quantitySelect.addEventListener("change", updateCart);
+    }
+
+    if (removeButton) {
+      removeButton.addEventListener("click", () => {
+        item.hidden = true;
+        updateCart();
+      });
+    }
+  });
+
+  updateCart();
+});
