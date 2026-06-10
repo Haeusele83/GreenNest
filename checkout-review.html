@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="de-CH">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Bestellung prüfen – GreenNest</title>
+  <meta
+    name="description"
+    content="Prüfe deine GreenNest Bestellung vor dem Abschluss."
+  />
+
+  <link rel="stylesheet" href="style.css" />
+  <script src="script.js" defer></script>
+</head>
+
+<body>
+  <a class="skip-link" href="#main-content">Direkt zum Inhalt</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="brand" aria-label="GreenNest Startseite">
+        <span class="brand-mark">GN</span>
+        <span class="brand-text">GreenNest</span>
+      </a>
+
+      <nav class="main-nav" aria-label="Hauptnavigation">
+        <a href="produkte.html">Pflanzen</a>
+        <a href="produkte.html#pflegeleicht">Pflegeleicht</a>
+        <a href="produkte.html#zubehoer">Zubehör</a>
+        <a href="index.html#beratung">Beratung</a>
+      </nav>
+
+      <div class="header-actions">
+        <a class="icon-link" href="produkte.html#produktsuche">Suchen</a>
+
+        <a class="cart-pill" href="warenkorb.html" aria-label="Warenkorb öffnen">
+          Warenkorb
+          <span class="cart-count">0</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <section class="checkout-page-section">
+      <div class="container">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="index.html">Startseite</a>
+          <span>/</span>
+          <a href="warenkorb.html">Warenkorb</a>
+          <span>/</span>
+          <a href="checkout-start.html">Checkout</a>
+          <span>/</span>
+          <span>Prüfen</span>
+        </nav>
+
+        <div class="checkout-header">
+          <div>
+            <p class="section-kicker">Checkout</p>
+            <h1>Prüfe deine Bestellung.</h1>
+            <p class="hero-lead">
+              Kontrolliere deine Produkte, Lieferadresse, Lieferoption und Zahlungsart,
+              bevor du die Bestellung abschliesst.
+            </p>
+          </div>
+        </div>
+
+        <nav class="checkout-stepper" aria-label="Checkout Fortschritt">
+          <ol>
+            <li class="is-complete">
+              <span>1</span>
+              Start
+            </li>
+            <li class="is-complete">
+              <span>2</span>
+              Adresse
+            </li>
+            <li class="is-complete">
+              <span>3</span>
+              Lieferung
+            </li>
+            <li class="is-complete">
+              <span>4</span>
+              Zahlung
+            </li>
+            <li class="is-current">
+              <span>5</span>
+              Prüfen
+            </li>
+          </ol>
+        </nav>
+
+        <form class="review-form" action="bestaetigung.html" data-review-form novalidate>
+          <div class="checkout-layout">
+            <section class="review-main" aria-label="Bestellung prüfen">
+              <article class="review-section-card">
+                <div class="review-section-header">
+                  <div>
+                    <p class="section-kicker">Warenkorb</p>
+                    <h2>Deine Produkte</h2>
+                  </div>
+
+                  <a class="text-button" href="warenkorb.html">
+                    Bearbeiten
+                  </a>
+                </div>
+
+                <div class="review-empty" data-review-empty hidden>
+                  <div class="feature-icon">🛒</div>
+                  <h3>Dein Warenkorb ist leer</h3>
+                  <p>Füge zuerst Produkte hinzu, bevor du die Bestellung abschliesst.</p>
+                  <a class="btn btn-primary" href="produkte.html">
+                    Produkte ansehen
+                  </a>
+                </div>
+
+                <div class="review-item-list" data-review-items>
+                  <p class="muted-text">Produkte werden geladen...</p>
+                </div>
+              </article>
+
+              <div class="review-info-grid">
+                <article class="review-section-card">
+                  <div class="review-section-header">
+                    <div>
+                      <p class="section-kicker">Adresse</p>
+                      <h2>Lieferadresse</h2>
+                    </div>
+
+                    <a class="text-button" href="checkout-adresse.html">
+                      Bearbeiten
+                    </a>
+                  </div>
+
+                  <address class="review-address" data-review-address>
+                    Adresse wird geladen...
+                  </address>
+                </article>
+
+                <article class="review-section-card">
+                  <div class="review-section-header">
+                    <div>
+                      <p class="section-kicker">Lieferung</p>
+                      <h2>Lieferoption</h2>
+                    </div>
+
+                    <a class="text-button" href="checkout-lieferung.html">
+                      Bearbeiten
+                    </a>
+                  </div>
+
+                  <div class="review-summary-box">
+                    <span>📦</span>
+                    <div>
+                      <strong data-review-delivery-title>Standardlieferung</strong>
+                      <p data-review-delivery-price>CHF 6.90</p>
+                    </div>
+                  </div>
+                </article>
+
+                <article class="review-section-card">
+                  <div class="review-section-header">
+                    <div>
+                      <p class="section-kicker">Zahlung</p>
+                      <h2>Zahlungsart</h2>
+                    </div>
+
+                    <a class="text-button" href="checkout-zahlung.html">
+                      Bearbeiten
+                    </a>
+                  </div>
+
+                  <div class="review-summary-box">
+                    <span>🔒</span>
+                    <div>
+                      <strong data-review-payment-title>TWINT</strong>
+                      <p>Die Zahlung wird im Prototyp nicht ausgeführt.</p>
+                    </div>
+                  </div>
+                </article>
+
+                <article class="review-section-card">
+                  <div class="review-section-header">
+                    <div>
+                      <p class="section-kicker">Hinweis</p>
+                      <h2>Nachhaltige Verpackung</h2>
+                    </div>
+                  </div>
+
+                  <div class="review-summary-box">
+                    <span>🌱</span>
+                    <div>
+                      <strong>Pflanzenfreundlich verpackt</strong>
+                      <p>
+                        Die Pflanzen werden stabil fixiert und möglichst ressourcenschonend versendet.
+                      </p>
+                    </div>
+                  </div>
+                </article>
+              </div>
+            </section>
+
+            <aside class="checkout-summary-card review-final-card" aria-label="Bestellübersicht">
+              <h2>Bestellübersicht</h2>
+
+              <div class="checkout-summary-status">
+                <span>✓</span>
+                <p>Bereit zur Bestellung</p>
+              </div>
+
+              <div class="summary-line">
+                <span>Zwischensumme</span>
+                <strong data-review-subtotal>CHF 0.00</strong>
+              </div>
+
+              <div class="summary-line">
+                <span>Lieferung</span>
+                <strong data-review-shipping>CHF 6.90</strong>
+              </div>
+
+              <div class="summary-line">
+                <span>Rabatt</span>
+                <strong>CHF 0.00</strong>
+              </div>
+
+              <div class="summary-total">
+                <span>Total</span>
+                <strong data-review-total>CHF 0.00</strong>
+              </div>
+
+              <div class="form-checkbox review-checkbox">
+                <input
+                  id="terms"
+                  name="terms"
+                  type="checkbox"
+                  data-terms-checkbox
+                />
+
+                <label for="terms">
+                  Ich akzeptiere die AGB und die Datenschutzbestimmungen von GreenNest.
+                </label>
+              </div>
+
+              <p class="field-error" data-terms-error></p>
+
+              <button class="btn btn-primary full-width" type="submit" data-place-order>
+                Bestellung abschliessen
+              </button>
+
+              <p class="summary-helper">
+                Im Prototyp wird keine echte Bestellung ausgelöst. Beim Klick wird eine
+                Bestellbestätigung simuliert.
+              </p>
+
+              <a class="btn btn-secondary full-width" href="checkout-zahlung.html">
+                Zurück zur Zahlung
+              </a>
+            </aside>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <a href="index.html" class="footer-brand">GreenNest</a>
+        <p>
+          Nachhaltige Pflanzen und Zubehör für ein grüneres Zuhause.
+          Dieser Prototyp zeigt den vollständigen Kaufprozess.
+        </p>
+      </div>
+
+      <div>
+        <h2>Checkout</h2>
+        <a href="checkout-adresse.html">Adresse</a>
+        <a href="checkout-lieferung.html">Lieferung</a>
+        <a href="checkout-zahlung.html">Zahlung</a>
+      </div>
+
+      <div>
+        <h2>UX-Fokus</h2>
+        <p>
+          Die Prüfseite gibt Kontrolle vor dem Kaufabschluss und reduziert Fehler durch
+          Bearbeiten-Links und eine klare AGB-Bestätigung.
+        </p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

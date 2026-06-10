@@ -2223,3 +2223,929 @@ textarea:focus-visible {
     padding-bottom: 0;
   }
 }
+/* Fix: ausgeblendete Warenkorb-Elemente wirklich ausblenden */
+.cart-item[hidden],
+.cart-layout[hidden],
+.empty-cart[hidden] {
+  display: none !important;
+}
+.cart-item[hidden],
+.cart-layout[hidden],
+.empty-cart[hidden],
+.toast[hidden],
+.product-card[hidden],
+.empty-state[hidden] {
+  display: none !important;
+}
+/* =========================================================
+   GreenNest – Checkout Start
+   ========================================================= */
+
+.checkout-page-section {
+  padding: 44px 0 76px;
+  background:
+    radial-gradient(circle at 14% 12%, rgba(31, 107, 67, 0.10), transparent 30%),
+    linear-gradient(135deg, #ffffff 0%, #f5f9f2 100%);
+}
+
+.checkout-header {
+  margin-bottom: 28px;
+}
+
+.checkout-header h1 {
+  max-width: 760px;
+  margin-bottom: 18px;
+  color: var(--color-primary-dark);
+  font-size: clamp(2.3rem, 4.6vw, 4.6rem);
+  line-height: 0.98;
+  letter-spacing: -0.065em;
+}
+
+.checkout-stepper {
+  margin-bottom: 34px;
+}
+
+.checkout-stepper ol {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 12px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.checkout-stepper li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 54px;
+  padding: 12px 14px;
+  color: var(--color-muted);
+  background: #ffffff;
+  border: 1px solid var(--color-border);
+  border-radius: 18px;
+  font-weight: 800;
+}
+
+.checkout-stepper li span {
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  color: var(--color-primary-dark);
+  background: var(--color-primary-soft);
+  border-radius: 50%;
+  font-size: 0.85rem;
+}
+
+.checkout-stepper li.is-current {
+  color: #ffffff;
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+.checkout-stepper li.is-current span {
+  color: var(--color-primary-dark);
+  background: #ffffff;
+}
+
+.checkout-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 360px;
+  gap: 30px;
+  align-items: start;
+}
+
+.checkout-choice-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px;
+}
+
+.checkout-choice-card {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 28px;
+  background: #ffffff;
+  border: 1px solid var(--color-border);
+  border-radius: 28px;
+  box-shadow: var(--shadow-card);
+}
+
+.checkout-choice-primary {
+  border-color: rgba(31, 107, 67, 0.36);
+  box-shadow: var(--shadow-soft);
+}
+
+.choice-icon {
+  display: grid;
+  place-items: center;
+  width: 58px;
+  height: 58px;
+  background: var(--color-primary-soft);
+  border-radius: 20px;
+  font-size: 1.7rem;
+}
+
+.checkout-choice-card h2 {
+  margin-bottom: 10px;
+  font-size: 1.7rem;
+  letter-spacing: -0.035em;
+}
+
+.checkout-choice-card p {
+  margin: 0;
+  color: var(--color-muted);
+}
+
+.login-preview-form {
+  display: grid;
+  gap: 16px;
+  margin-top: auto;
+}
+
+.form-field {
+  display: grid;
+  gap: 8px;
+}
+
+.form-field label {
+  font-size: 0.9rem;
+  font-weight: 850;
+}
+
+.form-field input,
+.form-field select,
+.form-field textarea {
+  width: 100%;
+  min-height: 52px;
+  padding: 0 15px;
+  color: var(--color-text);
+  background: #ffffff;
+  border: 1px solid var(--color-border);
+  border-radius: 16px;
+}
+
+.form-field textarea {
+  min-height: 110px;
+  padding-top: 14px;
+  resize: vertical;
+}
+
+.checkout-summary-card {
+  position: sticky;
+  top: 100px;
+  padding: 26px;
+  background: #ffffff;
+  border: 1px solid var(--color-border);
+  border-radius: 28px;
+  box-shadow: var(--shadow-soft);
+}
+
+.checkout-summary-card h2 {
+  margin-bottom: 20px;
+  font-size: 1.35rem;
+}
+
+.checkout-summary-status {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  padding: 14px;
+  margin-bottom: 16px;
+  color: var(--color-primary-dark);
+  background: var(--color-primary-soft);
+  border-radius: 18px;
+  font-weight: 850;
+}
+
+.checkout-summary-status span {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  color: #ffffff;
+  background: var(--color-primary);
+  border-radius: 50%;
+}
+
+.checkout-summary-status p {
+  margin: 0;
+}
+
+@media (max-width: 980px) {
+  .checkout-layout,
+  .checkout-choice-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .checkout-summary-card {
+    position: static;
+  }
+
+  .checkout-stepper ol {
+    grid-template-columns: 1fr;
+  }
+}
+/* =========================================================
+   GreenNest – Checkout Adresse
+   ========================================================= */
+
+.checkout-form-card {
+  padding: 30px;
+  background: #ffffff;
+  border: 1px solid var(--color-border);
+  border-radius: 28px;
+  box-shadow: var(--shadow-card);
+}
+
+.checkout-form {
+  display: grid;
+  gap: 22px;
+}
+
+.form-section-header {
+  padding-bottom: 6px;
+}
+
+.form-section-header h2 {
+  margin-bottom: 8px;
+  font-size: 1.55rem;
+}
+
+.form-section-header p {
+  max-width: 680px;
+  margin: 0;
+  color: var(--color-muted);
+}
+
+.form-grid {
+  display: grid;
+  gap: 18px;
+}
+
+.two-columns {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.two-columns-wide {
+  grid-template-columns: 1.25fr 0.75fr;
+}
+
+.three-columns {
+  grid-template-columns: 0.55fr 1fr 1fr;
+}
+
+.field-hint {
+  margin: 6px 0 0;
+  color: var(--color-muted);
+  font-size: 0.86rem;
+}
+
+.field-error {
+  min-height: 1.2em;
+  margin: 6px 0 0;
+  color: var(--color-error);
+  font-size: 0.86rem;
+  font-weight: 750;
+}
+
+.form-field.has-error input,
+.form-field.has-error select,
+.form-field.has-error textarea {
+  border-color: var(--color-error);
+  box-shadow: 0 0 0 3px rgba(180, 35, 24, 0.12);
+}
+
+.form-checkbox {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  padding: 16px;
+  background: #f8faf6;
+  border: 1px solid var(--color-border);
+  border-radius: 18px;
+}
+
+.form-checkbox input {
+  width: 18px;
+  height: 18px;
+  margin-top: 3px;
+  accent-color: var(--color-primary);
+}
+
+.form-checkbox label {
+  color: var(--color-muted);
+}
+
+.form-actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+  padding-top: 8px;
+}
+
+.checkout-stepper li.is-complete {
+  color: var(--color-primary-dark);
+  background: var(--color-primary-soft);
+  border-color: rgba(31, 107, 67, 0.22);
+}
+
+.checkout-stepper li.is-complete span {
+  color: #ffffff;
+  background: var(--color-primary);
+}
+
+@media (max-width: 760px) {
+  .two-columns,
+  .two-columns-wide,
+  .three-columns {
+    grid-template-columns: 1fr;
+  }
+
+  .form-actions {
+    flex-direction: column;
+  }
+
+  .form-actions .btn {
+    width: 100%;
+  }
+}
+/* =========================================================
+   GreenNest – Checkout Lieferung
+   ========================================================= */
+
+.delivery-option-group {
+  display: grid;
+  gap: 16px;
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+
+.delivery-option-group legend {
+  margin-bottom: 4px;
+  color: var(--color-text);
+  font-weight: 900;
+}
+
+.delivery-option-card {
+  display: block;
+  cursor: pointer;
+}
+
+.delivery-option-card input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.delivery-option-content {
+  display: grid;
+  grid-template-columns: 54px minmax(0, 1fr) auto;
+  gap: 16px;
+  align-items: center;
+  padding: 18px;
+  background: #ffffff;
+  border: 1px solid var(--color-border);
+  border-radius: 22px;
+  transition:
+    border-color 180ms ease,
+    box-shadow 180ms ease,
+    background 180ms ease;
+}
+
+.delivery-option-card:hover .delivery-option-content {
+  border-color: rgba(31, 107, 67, 0.32);
+}
+
+.delivery-option-card input:checked + .delivery-option-content {
+  background: var(--color-primary-soft);
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(31, 107, 67, 0.12);
+}
+
+.delivery-option-icon {
+  display: grid;
+  place-items: center;
+  width: 54px;
+  height: 54px;
+  background: #ffffff;
+  border-radius: 18px;
+  font-size: 1.55rem;
+}
+
+.delivery-option-content strong {
+  display: block;
+  margin-bottom: 4px;
+  color: var(--color-primary-dark);
+  font-size: 1.08rem;
+}
+
+.delivery-option-content small {
+  display: block;
+  color: var(--color-text);
+  font-size: 0.92rem;
+}
+
+.delivery-option-content em {
+  display: block;
+  margin-top: 4px;
+  color: var(--color-muted);
+  font-size: 0.86rem;
+  font-style: normal;
+}
+
+.delivery-option-content b {
+  color: var(--color-primary-dark);
+  white-space: nowrap;
+}
+
+.delivery-info-panel {
+  display: flex;
+  gap: 16px;
+  padding: 20px;
+  background: #f8faf6;
+  border: 1px solid var(--color-border);
+  border-radius: 22px;
+}
+
+.delivery-info-panel > span {
+  display: grid;
+  place-items: center;
+  flex: 0 0 46px;
+  width: 46px;
+  height: 46px;
+  background: var(--color-primary-soft);
+  border-radius: 50%;
+  font-size: 1.35rem;
+}
+
+.delivery-info-panel h2 {
+  margin-bottom: 6px;
+  font-size: 1.05rem;
+}
+
+.delivery-info-panel p {
+  margin: 0;
+  color: var(--color-muted);
+}
+
+@media (max-width: 620px) {
+  .delivery-option-content {
+    grid-template-columns: 1fr;
+  }
+
+  .delivery-option-content b {
+    justify-self: start;
+  }
+}
+/* =========================================================
+   GreenNest – Checkout Zahlung
+   ========================================================= */
+
+.payment-option-group {
+  display: grid;
+  gap: 16px;
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+
+.payment-option-group legend {
+  margin-bottom: 4px;
+  color: var(--color-text);
+  font-weight: 900;
+}
+
+.payment-option-card {
+  display: block;
+  cursor: pointer;
+}
+
+.payment-option-card input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.payment-option-content {
+  display: grid;
+  grid-template-columns: 54px minmax(0, 1fr) auto;
+  gap: 16px;
+  align-items: center;
+  padding: 18px;
+  background: #ffffff;
+  border: 1px solid var(--color-border);
+  border-radius: 22px;
+  transition:
+    border-color 180ms ease,
+    box-shadow 180ms ease,
+    background 180ms ease;
+}
+
+.payment-option-card:hover .payment-option-content {
+  border-color: rgba(31, 107, 67, 0.32);
+}
+
+.payment-option-card input:checked + .payment-option-content {
+  background: var(--color-primary-soft);
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(31, 107, 67, 0.12);
+}
+
+.payment-option-icon {
+  display: grid;
+  place-items: center;
+  width: 54px;
+  height: 54px;
+  background: #ffffff;
+  border-radius: 18px;
+  font-size: 1.55rem;
+}
+
+.payment-option-content strong {
+  display: block;
+  margin-bottom: 4px;
+  color: var(--color-primary-dark);
+  font-size: 1.08rem;
+}
+
+.payment-option-content small {
+  display: block;
+  color: var(--color-muted);
+  font-size: 0.92rem;
+}
+
+.payment-option-content b {
+  color: var(--color-primary-dark);
+  white-space: nowrap;
+}
+
+.payment-detail-panel {
+  display: flex;
+  gap: 16px;
+  padding: 20px;
+  background: #f8faf6;
+  border: 1px solid var(--color-border);
+  border-radius: 22px;
+}
+
+.payment-detail-panel[hidden] {
+  display: none !important;
+}
+
+.payment-detail-panel > span {
+  display: grid;
+  place-items: center;
+  flex: 0 0 46px;
+  width: 46px;
+  height: 46px;
+  background: var(--color-primary-soft);
+  border-radius: 50%;
+  font-size: 1.35rem;
+}
+
+.payment-detail-panel h2 {
+  margin-bottom: 6px;
+  font-size: 1.05rem;
+}
+
+.payment-detail-panel p {
+  margin: 0;
+  color: var(--color-muted);
+}
+
+.payment-card-fields {
+  display: grid;
+  gap: 16px;
+  margin-top: 18px;
+}
+
+@media (max-width: 620px) {
+  .payment-option-content {
+    grid-template-columns: 1fr;
+  }
+
+  .payment-option-content b {
+    justify-self: start;
+  }
+
+  .payment-detail-panel {
+    flex-direction: column;
+  }
+}
+/* =========================================================
+   GreenNest – Checkout Review
+   ========================================================= */
+
+.review-form {
+  display: block;
+}
+
+.review-main {
+  display: grid;
+  gap: 22px;
+}
+
+.review-section-card {
+  padding: 26px;
+  background: #ffffff;
+  border: 1px solid var(--color-border);
+  border-radius: 28px;
+  box-shadow: var(--shadow-card);
+}
+
+.review-section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 18px;
+  margin-bottom: 20px;
+}
+
+.review-section-header h2 {
+  margin: 0;
+  font-size: 1.45rem;
+  letter-spacing: -0.03em;
+}
+
+.review-item-list {
+  display: grid;
+  gap: 14px;
+}
+
+.review-item {
+  display: grid;
+  grid-template-columns: 86px minmax(0, 1fr) auto;
+  gap: 16px;
+  align-items: center;
+  padding: 14px;
+  background: #f8faf6;
+  border: 1px solid var(--color-border);
+  border-radius: 20px;
+}
+
+.review-item img {
+  width: 86px;
+  height: 86px;
+  object-fit: cover;
+  border-radius: 16px;
+}
+
+.review-item h3 {
+  margin-bottom: 4px;
+  font-size: 1rem;
+}
+
+.review-item p {
+  margin: 0;
+  color: var(--color-muted);
+  font-size: 0.9rem;
+}
+
+.review-item-price {
+  color: var(--color-primary-dark);
+  font-weight: 950;
+  white-space: nowrap;
+}
+
+.review-info-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px;
+}
+
+.review-address {
+  color: var(--color-muted);
+  font-style: normal;
+  line-height: 1.7;
+}
+
+.review-summary-box {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  padding: 16px;
+  background: #f8faf6;
+  border: 1px solid var(--color-border);
+  border-radius: 20px;
+}
+
+.review-summary-box > span {
+  display: grid;
+  place-items: center;
+  flex: 0 0 42px;
+  width: 42px;
+  height: 42px;
+  background: var(--color-primary-soft);
+  border-radius: 50%;
+  font-size: 1.25rem;
+}
+
+.review-summary-box strong {
+  display: block;
+  margin-bottom: 4px;
+  color: var(--color-primary-dark);
+}
+
+.review-summary-box p {
+  margin: 0;
+  color: var(--color-muted);
+}
+
+.review-checkbox {
+  margin: 18px 0 4px;
+}
+
+.review-final-card {
+  align-self: start;
+}
+
+.review-empty {
+  padding: 36px;
+  text-align: center;
+  background: #f8faf6;
+  border: 1px dashed var(--color-border);
+  border-radius: 22px;
+}
+
+.review-empty[hidden] {
+  display: none !important;
+}
+
+.review-empty h3 {
+  margin: 12px 0 8px;
+  font-size: 1.35rem;
+}
+
+.review-empty p {
+  margin: 0 auto 20px;
+  max-width: 420px;
+  color: var(--color-muted);
+}
+
+@media (max-width: 760px) {
+  .review-info-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .review-item {
+    grid-template-columns: 1fr;
+  }
+
+  .review-item img {
+    width: 100%;
+    height: 220px;
+  }
+
+  .review-item-price {
+    white-space: normal;
+  }
+}
+/* =========================================================
+   GreenNest – Bestellbestätigung
+   ========================================================= */
+
+.confirmation-hero {
+  padding: 56px 0 70px;
+  background:
+    radial-gradient(circle at 82% 18%, rgba(31, 107, 67, 0.14), transparent 34%),
+    linear-gradient(135deg, #ffffff 0%, #f1f7ee 100%);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.confirmation-hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 390px;
+  gap: 46px;
+  align-items: center;
+}
+
+.confirmation-icon {
+  display: grid;
+  place-items: center;
+  width: 78px;
+  height: 78px;
+  margin-bottom: 24px;
+  color: #ffffff;
+  background: var(--color-primary);
+  border-radius: 50%;
+  font-size: 2.4rem;
+  font-weight: 950;
+  box-shadow: var(--shadow-soft);
+}
+
+.confirmation-hero h1 {
+  max-width: 760px;
+  margin-bottom: 18px;
+  color: var(--color-primary-dark);
+  font-size: clamp(2.5rem, 5vw, 4.8rem);
+  line-height: 0.98;
+  letter-spacing: -0.065em;
+}
+
+.confirmation-meta {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 220px));
+  gap: 14px;
+  margin: 28px 0;
+}
+
+.confirmation-meta article {
+  padding: 18px;
+  background: #ffffff;
+  border: 1px solid var(--color-border);
+  border-radius: 20px;
+  box-shadow: 0 10px 28px rgba(23, 35, 28, 0.06);
+}
+
+.confirmation-meta span {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--color-muted);
+  font-size: 0.86rem;
+  font-weight: 750;
+}
+
+.confirmation-meta strong {
+  color: var(--color-primary-dark);
+  font-size: 1.1rem;
+}
+
+.confirmation-next-card {
+  padding: 28px;
+  background: #ffffff;
+  border: 1px solid var(--color-border);
+  border-radius: 30px;
+  box-shadow: var(--shadow-soft);
+}
+
+.confirmation-next-card h2 {
+  margin-bottom: 22px;
+  font-size: 1.45rem;
+}
+
+.next-step-list {
+  display: grid;
+  gap: 16px;
+}
+
+.next-step-list article {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+}
+
+.next-step-list span {
+  display: grid;
+  place-items: center;
+  flex: 0 0 36px;
+  width: 36px;
+  height: 36px;
+  color: #ffffff;
+  background: var(--color-primary);
+  border-radius: 50%;
+  font-weight: 950;
+}
+
+.next-step-list h3 {
+  margin-bottom: 4px;
+  font-size: 1rem;
+}
+
+.next-step-list p {
+  margin: 0;
+  color: var(--color-muted);
+  font-size: 0.92rem;
+}
+
+.confirmation-section {
+  padding: 70px 0 76px;
+}
+
+.confirmation-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 360px;
+  gap: 30px;
+  align-items: start;
+}
+
+.confirmation-main {
+  display: grid;
+  gap: 22px;
+}
+
+@media (max-width: 980px) {
+  .confirmation-hero-grid,
+  .confirmation-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 620px) {
+  .confirmation-meta {
+    grid-template-columns: 1fr;
+  }
+}

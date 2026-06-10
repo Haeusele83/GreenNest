@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="de-CH">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Checkout starten – GreenNest</title>
+  <meta
+    name="description"
+    content="Starte den Checkout im GreenNest Webshop als Gast oder mit Kundenkonto."
+  />
+
+  <link rel="stylesheet" href="style.css" />
+  <script src="script.js" defer></script>
+</head>
+
+<body>
+  <a class="skip-link" href="#main-content">Direkt zum Inhalt</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="brand" aria-label="GreenNest Startseite">
+        <span class="brand-mark">GN</span>
+        <span class="brand-text">GreenNest</span>
+      </a>
+
+      <nav class="main-nav" aria-label="Hauptnavigation">
+        <a href="produkte.html">Pflanzen</a>
+        <a href="produkte.html#pflegeleicht">Pflegeleicht</a>
+        <a href="produkte.html#zubehoer">Zubehör</a>
+        <a href="index.html#beratung">Beratung</a>
+      </nav>
+
+      <div class="header-actions">
+        <a class="icon-link" href="produkte.html#produktsuche">Suchen</a>
+
+        <a class="cart-pill" href="warenkorb.html" aria-label="Warenkorb öffnen">
+          Warenkorb
+          <span class="cart-count">0</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <section class="checkout-page-section">
+      <div class="container">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="index.html">Startseite</a>
+          <span>/</span>
+          <a href="warenkorb.html">Warenkorb</a>
+          <span>/</span>
+          <span>Checkout</span>
+        </nav>
+
+        <div class="checkout-header">
+          <div>
+            <p class="section-kicker">Checkout</p>
+            <h1>Wie möchtest du bestellen?</h1>
+            <p class="hero-lead">
+              Du kannst deine Bestellung ohne Kundenkonto abschliessen. Ein Konto ist optional
+              und kann später erstellt werden.
+            </p>
+          </div>
+        </div>
+
+        <nav class="checkout-stepper" aria-label="Checkout Fortschritt">
+          <ol>
+            <li class="is-current">
+              <span>1</span>
+              Start
+            </li>
+            <li>
+              <span>2</span>
+              Adresse
+            </li>
+            <li>
+              <span>3</span>
+              Lieferung
+            </li>
+            <li>
+              <span>4</span>
+              Zahlung
+            </li>
+            <li>
+              <span>5</span>
+              Prüfen
+            </li>
+          </ol>
+        </nav>
+
+        <div class="checkout-layout">
+          <section class="checkout-choice-grid" aria-label="Checkout Optionen">
+            <article class="checkout-choice-card checkout-choice-primary">
+              <div class="choice-icon">🛒</div>
+
+              <div>
+                <p class="section-kicker">Empfohlen</p>
+                <h2>Als Gast bestellen</h2>
+                <p>
+                  Schnell und unkompliziert bestellen, ohne ein Kundenkonto zu erstellen.
+                  Du brauchst nur deine Lieferadresse, Lieferoption und Zahlungsart.
+                </p>
+              </div>
+
+              <ul class="check-list">
+                <li>kein Passwort nötig</li>
+                <li>schneller Checkout</li>
+                <li>Bestellbestätigung per E-Mail</li>
+              </ul>
+
+              <a class="btn btn-primary full-width" href="checkout-adresse.html">
+                Als Gast fortfahren
+              </a>
+            </article>
+
+            <article class="checkout-choice-card">
+              <div class="choice-icon">👤</div>
+
+              <div>
+                <p class="section-kicker">Optional</p>
+                <h2>Einloggen</h2>
+                <p>
+                  Nutze dein Kundenkonto, wenn du gespeicherte Adressen oder frühere
+                  Bestellungen verwenden möchtest.
+                </p>
+              </div>
+
+              <form class="login-preview-form" action="checkout-adresse.html">
+                <div class="form-field">
+                  <label for="email">E-Mail-Adresse</label>
+                  <input
+                    id="email"
+                    name="email"
+                    type="email"
+                    placeholder="name@beispiel.ch"
+                  />
+                </div>
+
+                <div class="form-field">
+                  <label for="password">Passwort</label>
+                  <input
+                    id="password"
+                    name="password"
+                    type="password"
+                    placeholder="Passwort"
+                  />
+                </div>
+
+                <button class="btn btn-secondary full-width" type="submit">
+                  Einloggen und fortfahren
+                </button>
+              </form>
+            </article>
+          </section>
+
+          <aside class="checkout-summary-card" aria-label="Checkout Übersicht">
+            <h2>Bestellung</h2>
+
+            <div class="checkout-summary-status">
+              <span>✓</span>
+              <p>Warenkorb wurde übernommen</p>
+            </div>
+
+            <div class="summary-line">
+              <span>Nächster Schritt</span>
+              <strong>Adresse</strong>
+            </div>
+
+            <div class="summary-line">
+              <span>Checkout-Art</span>
+              <strong>Gastkauf möglich</strong>
+            </div>
+
+            <div class="summary-line">
+              <span>Zahlung</span>
+              <strong>später auswählen</strong>
+            </div>
+
+            <div class="summary-total">
+              <span>Status</span>
+              <strong>bereit</strong>
+            </div>
+
+            <p class="summary-helper">
+              Deine Produkte bleiben im Warenkorb gespeichert, solange du den Browser nicht zurücksetzt.
+            </p>
+
+            <a class="btn btn-secondary full-width" href="warenkorb.html">
+              Zurück zum Warenkorb
+            </a>
+          </aside>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <a href="index.html" class="footer-brand">GreenNest</a>
+        <p>
+          Nachhaltige Pflanzen und Zubehör für ein grüneres Zuhause.
+          Dieser Prototyp zeigt den vollständigen Kaufprozess.
+        </p>
+      </div>
+
+      <div>
+        <h2>Checkout</h2>
+        <a href="checkout-start.html">Start</a>
+        <a href="checkout-adresse.html">Adresse</a>
+        <a href="checkout-lieferung.html">Lieferung</a>
+      </div>
+
+      <div>
+        <h2>UX-Fokus</h2>
+        <p>
+          Der Checkout startet mit einer klaren Entscheidung: Gastkauf oder Login.
+          Dadurch wird unnötige Registrierung vermieden.
+        </p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

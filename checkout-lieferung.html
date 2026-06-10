@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="de-CH">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Lieferung – GreenNest</title>
+  <meta
+    name="description"
+    content="Wähle die Lieferoption für deine GreenNest Bestellung."
+  />
+
+  <link rel="stylesheet" href="style.css" />
+  <script src="script.js" defer></script>
+</head>
+
+<body>
+  <a class="skip-link" href="#main-content">Direkt zum Inhalt</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="brand" aria-label="GreenNest Startseite">
+        <span class="brand-mark">GN</span>
+        <span class="brand-text">GreenNest</span>
+      </a>
+
+      <nav class="main-nav" aria-label="Hauptnavigation">
+        <a href="produkte.html">Pflanzen</a>
+        <a href="produkte.html#pflegeleicht">Pflegeleicht</a>
+        <a href="produkte.html#zubehoer">Zubehör</a>
+        <a href="index.html#beratung">Beratung</a>
+      </nav>
+
+      <div class="header-actions">
+        <a class="icon-link" href="produkte.html#produktsuche">Suchen</a>
+
+        <a class="cart-pill" href="warenkorb.html" aria-label="Warenkorb öffnen">
+          Warenkorb
+          <span class="cart-count">0</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <section class="checkout-page-section">
+      <div class="container">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="index.html">Startseite</a>
+          <span>/</span>
+          <a href="warenkorb.html">Warenkorb</a>
+          <span>/</span>
+          <a href="checkout-start.html">Checkout</a>
+          <span>/</span>
+          <span>Lieferung</span>
+        </nav>
+
+        <div class="checkout-header">
+          <div>
+            <p class="section-kicker">Checkout</p>
+            <h1>Wie sollen deine Pflanzen geliefert werden?</h1>
+            <p class="hero-lead">
+              Wähle die Lieferoption, die am besten zu dir passt. Die Pflanzen werden geschützt
+              und nachhaltig verpackt.
+            </p>
+          </div>
+        </div>
+
+        <nav class="checkout-stepper" aria-label="Checkout Fortschritt">
+          <ol>
+            <li class="is-complete">
+              <span>1</span>
+              Start
+            </li>
+            <li class="is-complete">
+              <span>2</span>
+              Adresse
+            </li>
+            <li class="is-current">
+              <span>3</span>
+              Lieferung
+            </li>
+            <li>
+              <span>4</span>
+              Zahlung
+            </li>
+            <li>
+              <span>5</span>
+              Prüfen
+            </li>
+          </ol>
+        </nav>
+
+        <div class="checkout-layout">
+          <section class="checkout-form-card" aria-label="Lieferoption auswählen">
+            <form class="checkout-form" action="checkout-zahlung.html" data-delivery-form>
+              <div class="form-section-header">
+                <h2>Lieferoption</h2>
+                <p>
+                  Die Standardlieferung ist für Pflanzen empfohlen, weil sie planbar und
+                  ressourcenschonend ist.
+                </p>
+              </div>
+
+              <fieldset class="delivery-option-group">
+                <legend>Lieferart auswählen</legend>
+
+                <label class="delivery-option-card">
+                  <input
+                    type="radio"
+                    name="deliveryOption"
+                    value="standard"
+                    data-delivery-option
+                    data-delivery-title="Standardlieferung"
+                    data-delivery-price="6.90"
+                    checked
+                  />
+
+                  <span class="delivery-option-content">
+                    <span class="delivery-option-icon">📦</span>
+
+                    <span>
+                      <strong>Standardlieferung</strong>
+                      <small>Lieferung in 2–3 Werktagen</small>
+                      <em>Empfohlen für Pflanzen</em>
+                    </span>
+
+                    <b>CHF 6.90</b>
+                  </span>
+                </label>
+
+                <label class="delivery-option-card">
+                  <input
+                    type="radio"
+                    name="deliveryOption"
+                    value="express"
+                    data-delivery-option
+                    data-delivery-title="Expresslieferung"
+                    data-delivery-price="14.90"
+                  />
+
+                  <span class="delivery-option-content">
+                    <span class="delivery-option-icon">⚡</span>
+
+                    <span>
+                      <strong>Expresslieferung</strong>
+                      <small>Lieferung am nächsten Werktag</small>
+                      <em>Für besonders schnelle Lieferung</em>
+                    </span>
+
+                    <b>CHF 14.90</b>
+                  </span>
+                </label>
+
+                <label class="delivery-option-card">
+                  <input
+                    type="radio"
+                    name="deliveryOption"
+                    value="pickup"
+                    data-delivery-option
+                    data-delivery-title="Abholung im GreenNest Partnerstore"
+                    data-delivery-price="0"
+                  />
+
+                  <span class="delivery-option-content">
+                    <span class="delivery-option-icon">🏬</span>
+
+                    <span>
+                      <strong>Abholung im Partnerstore</strong>
+                      <small>Bereit in 1–2 Werktagen</small>
+                      <em>Kostenlos und besonders nachhaltig</em>
+                    </span>
+
+                    <b>CHF 0.00</b>
+                  </span>
+                </label>
+              </fieldset>
+
+              <div class="delivery-info-panel">
+                <span>🌱</span>
+                <div>
+                  <h2>Pflanzenfreundliche Verpackung</h2>
+                  <p>
+                    Jede Pflanze wird stabil fixiert, damit Erde, Blätter und Topf während der
+                    Lieferung geschützt bleiben.
+                  </p>
+                </div>
+              </div>
+
+              <div class="form-actions">
+                <a class="btn btn-secondary" href="checkout-adresse.html">
+                  Zurück
+                </a>
+
+                <button class="btn btn-primary" type="submit">
+                  Weiter zur Zahlung
+                </button>
+              </div>
+            </form>
+          </section>
+
+          <aside class="checkout-summary-card" aria-label="Checkout Übersicht">
+            <h2>Bestellung</h2>
+
+            <div class="checkout-summary-status">
+              <span>3</span>
+              <p>Lieferung auswählen</p>
+            </div>
+
+            <div class="summary-line">
+              <span>Aktuelle Auswahl</span>
+              <strong data-delivery-summary-title>Standardlieferung</strong>
+            </div>
+
+            <div class="summary-line">
+              <span>Lieferkosten</span>
+              <strong data-delivery-summary-price>CHF 6.90</strong>
+            </div>
+
+            <div class="summary-line">
+              <span>Nächster Schritt</span>
+              <strong>Zahlung</strong>
+            </div>
+
+            <div class="summary-total">
+              <span>Status</span>
+              <strong>bereit</strong>
+            </div>
+
+            <p class="summary-helper">
+              Du kannst die Lieferoption später in der Bestellprüfung nochmals kontrollieren.
+            </p>
+
+            <a class="btn btn-secondary full-width" href="checkout-adresse.html">
+              Adresse bearbeiten
+            </a>
+          </aside>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <a href="index.html" class="footer-brand">GreenNest</a>
+        <p>
+          Nachhaltige Pflanzen und Zubehör für ein grüneres Zuhause.
+          Dieser Prototyp zeigt den vollständigen Kaufprozess.
+        </p>
+      </div>
+
+      <div>
+        <h2>Checkout</h2>
+        <a href="checkout-adresse.html">Adresse</a>
+        <a href="checkout-lieferung.html">Lieferung</a>
+        <a href="checkout-zahlung.html">Zahlung</a>
+      </div>
+
+      <div>
+        <h2>UX-Fokus</h2>
+        <p>
+          Die Lieferoptionen sind vergleichbar dargestellt: Dauer, Kosten und Empfehlung
+          sind direkt sichtbar.
+        </p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

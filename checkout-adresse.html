@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="de-CH">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Lieferadresse – GreenNest</title>
+  <meta
+    name="description"
+    content="Gib deine Lieferadresse für die GreenNest Bestellung ein."
+  />
+
+  <link rel="stylesheet" href="style.css" />
+  <script src="script.js" defer></script>
+</head>
+
+<body>
+  <a class="skip-link" href="#main-content">Direkt zum Inhalt</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="brand" aria-label="GreenNest Startseite">
+        <span class="brand-mark">GN</span>
+        <span class="brand-text">GreenNest</span>
+      </a>
+
+      <nav class="main-nav" aria-label="Hauptnavigation">
+        <a href="produkte.html">Pflanzen</a>
+        <a href="produkte.html#pflegeleicht">Pflegeleicht</a>
+        <a href="produkte.html#zubehoer">Zubehör</a>
+        <a href="index.html#beratung">Beratung</a>
+      </nav>
+
+      <div class="header-actions">
+        <a class="icon-link" href="produkte.html#produktsuche">Suchen</a>
+
+        <a class="cart-pill" href="warenkorb.html" aria-label="Warenkorb öffnen">
+          Warenkorb
+          <span class="cart-count">0</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <section class="checkout-page-section">
+      <div class="container">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="index.html">Startseite</a>
+          <span>/</span>
+          <a href="warenkorb.html">Warenkorb</a>
+          <span>/</span>
+          <a href="checkout-start.html">Checkout</a>
+          <span>/</span>
+          <span>Adresse</span>
+        </nav>
+
+        <div class="checkout-header">
+          <div>
+            <p class="section-kicker">Checkout</p>
+            <h1>Wohin dürfen wir deine Pflanzen liefern?</h1>
+            <p class="hero-lead">
+              Bitte gib deine Lieferadresse ein. Pflichtfelder sind klar markiert.
+              Fehler werden direkt beim Formular angezeigt.
+            </p>
+          </div>
+        </div>
+
+        <nav class="checkout-stepper" aria-label="Checkout Fortschritt">
+          <ol>
+            <li class="is-complete">
+              <span>1</span>
+              Start
+            </li>
+            <li class="is-current">
+              <span>2</span>
+              Adresse
+            </li>
+            <li>
+              <span>3</span>
+              Lieferung
+            </li>
+            <li>
+              <span>4</span>
+              Zahlung
+            </li>
+            <li>
+              <span>5</span>
+              Prüfen
+            </li>
+          </ol>
+        </nav>
+
+        <div class="checkout-layout">
+          <section class="checkout-form-card" aria-label="Lieferadresse">
+            <form class="checkout-form" action="checkout-lieferung.html" data-checkout-address-form novalidate>
+              <div class="form-section-header">
+                <h2>Lieferadresse</h2>
+                <p>
+                  Wir verwenden diese Angaben nur für die Lieferung und die Bestellbestätigung.
+                </p>
+              </div>
+
+              <div class="form-grid two-columns">
+                <div class="form-field">
+                  <label for="first-name">Vorname *</label>
+                  <input
+                    id="first-name"
+                    name="firstName"
+                    type="text"
+                    autocomplete="given-name"
+                    data-required
+                  />
+                  <p class="field-error" data-error-for="first-name"></p>
+                </div>
+
+                <div class="form-field">
+                  <label for="last-name">Nachname *</label>
+                  <input
+                    id="last-name"
+                    name="lastName"
+                    type="text"
+                    autocomplete="family-name"
+                    data-required
+                  />
+                  <p class="field-error" data-error-for="last-name"></p>
+                </div>
+              </div>
+
+              <div class="form-field">
+                <label for="email-address">E-Mail-Adresse *</label>
+                <input
+                  id="email-address"
+                  name="email"
+                  type="email"
+                  autocomplete="email"
+                  placeholder="name@beispiel.ch"
+                  data-required
+                  data-email
+                />
+                <p class="field-hint">An diese Adresse senden wir die Bestellbestätigung.</p>
+                <p class="field-error" data-error-for="email-address"></p>
+              </div>
+
+              <div class="form-grid two-columns-wide">
+                <div class="form-field">
+                  <label for="street">Strasse und Hausnummer *</label>
+                  <input
+                    id="street"
+                    name="street"
+                    type="text"
+                    autocomplete="street-address"
+                    placeholder="Musterstrasse 12"
+                    data-required
+                  />
+                  <p class="field-error" data-error-for="street"></p>
+                </div>
+
+                <div class="form-field">
+                  <label for="additional-address">Adresszusatz</label>
+                  <input
+                    id="additional-address"
+                    name="additionalAddress"
+                    type="text"
+                    placeholder="z. B. 2. Stock, links"
+                  />
+                </div>
+              </div>
+
+              <div class="form-grid three-columns">
+                <div class="form-field">
+                  <label for="zip">PLZ *</label>
+                  <input
+                    id="zip"
+                    name="zip"
+                    type="text"
+                    inputmode="numeric"
+                    autocomplete="postal-code"
+                    placeholder="3000"
+                    data-required
+                    data-zip
+                  />
+                  <p class="field-error" data-error-for="zip"></p>
+                </div>
+
+                <div class="form-field">
+                  <label for="city">Ort *</label>
+                  <input
+                    id="city"
+                    name="city"
+                    type="text"
+                    autocomplete="address-level2"
+                    placeholder="Bern"
+                    data-required
+                  />
+                  <p class="field-error" data-error-for="city"></p>
+                </div>
+
+                <div class="form-field">
+                  <label for="country">Land *</label>
+                  <select id="country" name="country" data-required>
+                    <option value="Schweiz" selected>Schweiz</option>
+                    <option value="Liechtenstein">Liechtenstein</option>
+                  </select>
+                  <p class="field-error" data-error-for="country"></p>
+                </div>
+              </div>
+
+              <div class="form-field">
+                <label for="delivery-note">Hinweis für die Lieferung</label>
+                <textarea
+                  id="delivery-note"
+                  name="deliveryNote"
+                  placeholder="z. B. Bitte vor der Wohnungstür abstellen."
+                ></textarea>
+              </div>
+
+              <div class="form-checkbox">
+                <input id="billing-same" name="billingSame" type="checkbox" checked />
+                <label for="billing-same">
+                  Rechnungsadresse ist gleich wie Lieferadresse
+                </label>
+              </div>
+
+              <div class="form-actions">
+                <a class="btn btn-secondary" href="checkout-start.html">
+                  Zurück
+                </a>
+
+                <button class="btn btn-primary" type="submit">
+                  Weiter zur Lieferung
+                </button>
+              </div>
+            </form>
+          </section>
+
+          <aside class="checkout-summary-card" aria-label="Checkout Übersicht">
+            <h2>Bestellung</h2>
+
+            <div class="checkout-summary-status">
+              <span>2</span>
+              <p>Adresse erfassen</p>
+            </div>
+
+            <div class="summary-line">
+              <span>Checkout-Art</span>
+              <strong>Gastkauf</strong>
+            </div>
+
+            <div class="summary-line">
+              <span>Nächster Schritt</span>
+              <strong>Lieferung</strong>
+            </div>
+
+            <div class="summary-line">
+              <span>Lieferland</span>
+              <strong>Schweiz</strong>
+            </div>
+
+            <div class="summary-total">
+              <span>Status</span>
+              <strong>in Bearbeitung</strong>
+            </div>
+
+            <p class="summary-helper">
+              Deine Eingaben werden im Prototyp nur für den Ablauf verwendet und nicht an einen Server gesendet.
+            </p>
+
+            <a class="btn btn-secondary full-width" href="warenkorb.html">
+              Zurück zum Warenkorb
+            </a>
+          </aside>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <a href="index.html" class="footer-brand">GreenNest</a>
+        <p>
+          Nachhaltige Pflanzen und Zubehör für ein grüneres Zuhause.
+          Dieser Prototyp zeigt den vollständigen Kaufprozess.
+        </p>
+      </div>
+
+      <div>
+        <h2>Checkout</h2>
+        <a href="checkout-start.html">Start</a>
+        <a href="checkout-adresse.html">Adresse</a>
+        <a href="checkout-lieferung.html">Lieferung</a>
+      </div>
+
+      <div>
+        <h2>UX-Fokus</h2>
+        <p>
+          Das Adressformular nutzt klare Labels, Pflichtfeldhinweise und verständliche Fehlermeldungen.
+        </p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

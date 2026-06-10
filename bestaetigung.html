@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="de-CH">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Bestellung bestätigt – GreenNest</title>
+  <meta
+    name="description"
+    content="Deine GreenNest Bestellung wurde erfolgreich bestätigt."
+  />
+
+  <link rel="stylesheet" href="style.css" />
+  <script src="script.js" defer></script>
+</head>
+
+<body>
+  <a class="skip-link" href="#main-content">Direkt zum Inhalt</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="brand" aria-label="GreenNest Startseite">
+        <span class="brand-mark">GN</span>
+        <span class="brand-text">GreenNest</span>
+      </a>
+
+      <nav class="main-nav" aria-label="Hauptnavigation">
+        <a href="produkte.html">Pflanzen</a>
+        <a href="produkte.html#pflegeleicht">Pflegeleicht</a>
+        <a href="produkte.html#zubehoer">Zubehör</a>
+        <a href="index.html#beratung">Beratung</a>
+      </nav>
+
+      <div class="header-actions">
+        <a class="icon-link" href="produkte.html#produktsuche">Suchen</a>
+
+        <a class="cart-pill" href="warenkorb.html" aria-label="Warenkorb öffnen">
+          Warenkorb
+          <span class="cart-count">0</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <section class="confirmation-hero">
+      <div class="container confirmation-hero-grid">
+        <div>
+          <div class="confirmation-icon">✓</div>
+
+          <p class="section-kicker">Bestellung abgeschlossen</p>
+
+          <h1>Danke für deine Bestellung.</h1>
+
+          <p class="hero-lead">
+            Deine Bestellung wurde erfolgreich übermittelt. Du erhältst die Bestellbestätigung
+            im echten Shop zusätzlich per E-Mail.
+          </p>
+
+          <div class="confirmation-meta">
+            <article>
+              <span>Bestellnummer</span>
+              <strong data-confirmation-number>GN-000000</strong>
+            </article>
+
+            <article>
+              <span>Bestelldatum</span>
+              <strong data-confirmation-date>Heute</strong>
+            </article>
+          </div>
+
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="produkte.html">
+              Weiter einkaufen
+            </a>
+
+            <a class="btn btn-secondary" href="index.html">
+              Zur Startseite
+            </a>
+          </div>
+        </div>
+
+        <aside class="confirmation-next-card">
+          <h2>Wie geht es weiter?</h2>
+
+          <div class="next-step-list">
+            <article>
+              <span>1</span>
+              <div>
+                <h3>Bestätigung</h3>
+                <p>Die Bestellbestätigung wird per E-Mail zugestellt.</p>
+              </div>
+            </article>
+
+            <article>
+              <span>2</span>
+              <div>
+                <h3>Verpackung</h3>
+                <p>Deine Pflanzen werden geschützt und nachhaltig verpackt.</p>
+              </div>
+            </article>
+
+            <article>
+              <span>3</span>
+              <div>
+                <h3>Lieferung</h3>
+                <p>Du erhältst eine Versandinformation, sobald die Bestellung unterwegs ist.</p>
+              </div>
+            </article>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="container confirmation-section">
+      <div class="confirmation-layout">
+        <section class="confirmation-main">
+          <article class="review-section-card">
+            <div class="review-section-header">
+              <div>
+                <p class="section-kicker">Übersicht</p>
+                <h2>Bestellte Produkte</h2>
+              </div>
+            </div>
+
+            <div class="review-empty" data-confirmation-empty hidden>
+              <div class="feature-icon">🛒</div>
+              <h3>Keine Bestellung gefunden</h3>
+              <p>
+                Für diese Seite wurde keine gespeicherte Bestellung gefunden.
+                Starte den Kaufprozess erneut.
+              </p>
+              <a class="btn btn-primary" href="produkte.html">
+                Produkte ansehen
+              </a>
+            </div>
+
+            <div class="review-item-list" data-confirmation-items>
+              <p class="muted-text">Bestellung wird geladen...</p>
+            </div>
+          </article>
+
+          <div class="review-info-grid">
+            <article class="review-section-card">
+              <div class="review-section-header">
+                <div>
+                  <p class="section-kicker">Adresse</p>
+                  <h2>Lieferadresse</h2>
+                </div>
+              </div>
+
+              <address class="review-address" data-confirmation-address>
+                Adresse wird geladen...
+              </address>
+            </article>
+
+            <article class="review-section-card">
+              <div class="review-section-header">
+                <div>
+                  <p class="section-kicker">Lieferung</p>
+                  <h2>Lieferoption</h2>
+                </div>
+              </div>
+
+              <div class="review-summary-box">
+                <span>📦</span>
+                <div>
+                  <strong data-confirmation-delivery>Standardlieferung</strong>
+                  <p>Die Lieferoption wurde im Checkout ausgewählt.</p>
+                </div>
+              </div>
+            </article>
+
+            <article class="review-section-card">
+              <div class="review-section-header">
+                <div>
+                  <p class="section-kicker">Zahlung</p>
+                  <h2>Zahlungsart</h2>
+                </div>
+              </div>
+
+              <div class="review-summary-box">
+                <span>🔒</span>
+                <div>
+                  <strong data-confirmation-payment>TWINT</strong>
+                  <p>Im Prototyp wurde keine echte Zahlung ausgelöst.</p>
+                </div>
+              </div>
+            </article>
+
+            <article class="review-section-card">
+              <div class="review-section-header">
+                <div>
+                  <p class="section-kicker">Service</p>
+                  <h2>Rückgabe & Support</h2>
+                </div>
+              </div>
+
+              <div class="review-summary-box">
+                <span>↩️</span>
+                <div>
+                  <strong>30 Tage Rückgaberecht</strong>
+                  <p>Bei Fragen zur Bestellung hilft der GreenNest Support weiter.</p>
+                </div>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <aside class="checkout-summary-card review-final-card">
+          <h2>Bestellbetrag</h2>
+
+          <div class="checkout-summary-status">
+            <span>✓</span>
+            <p>Bestellung bestätigt</p>
+          </div>
+
+          <div class="summary-line">
+            <span>Zwischensumme</span>
+            <strong data-confirmation-subtotal>CHF 0.00</strong>
+          </div>
+
+          <div class="summary-line">
+            <span>Lieferung</span>
+            <strong data-confirmation-shipping>CHF 0.00</strong>
+          </div>
+
+          <div class="summary-line">
+            <span>Rabatt</span>
+            <strong>CHF 0.00</strong>
+          </div>
+
+          <div class="summary-total">
+            <span>Total</span>
+            <strong data-confirmation-total>CHF 0.00</strong>
+          </div>
+
+          <p class="summary-helper">
+            Der Warenkorb wurde nach der simulierten Bestellung geleert.
+          </p>
+
+          <a class="btn btn-primary full-width" href="produkte.html">
+            Neue Bestellung starten
+          </a>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <a href="index.html" class="footer-brand">GreenNest</a>
+        <p>
+          Nachhaltige Pflanzen und Zubehör für ein grüneres Zuhause.
+          Dieser Prototyp zeigt den vollständigen Kaufprozess.
+        </p>
+      </div>
+
+      <div>
+        <h2>Shop</h2>
+        <a href="produkte.html">Pflanzen</a>
+        <a href="warenkorb.html">Warenkorb</a>
+        <a href="checkout-start.html">Checkout</a>
+      </div>
+
+      <div>
+        <h2>UX-Fokus</h2>
+        <p>
+          Die Bestätigung gibt klares Feedback, zeigt die wichtigsten Bestelldaten
+          und schliesst den Kaufprozess nachvollziehbar ab.
+        </p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

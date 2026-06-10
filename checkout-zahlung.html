@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="de-CH">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Zahlung – GreenNest</title>
+  <meta
+    name="description"
+    content="Wähle die Zahlungsmethode für deine GreenNest Bestellung."
+  />
+
+  <link rel="stylesheet" href="style.css" />
+  <script src="script.js" defer></script>
+</head>
+
+<body>
+  <a class="skip-link" href="#main-content">Direkt zum Inhalt</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="brand" aria-label="GreenNest Startseite">
+        <span class="brand-mark">GN</span>
+        <span class="brand-text">GreenNest</span>
+      </a>
+
+      <nav class="main-nav" aria-label="Hauptnavigation">
+        <a href="produkte.html">Pflanzen</a>
+        <a href="produkte.html#pflegeleicht">Pflegeleicht</a>
+        <a href="produkte.html#zubehoer">Zubehör</a>
+        <a href="index.html#beratung">Beratung</a>
+      </nav>
+
+      <div class="header-actions">
+        <a class="icon-link" href="produkte.html#produktsuche">Suchen</a>
+
+        <a class="cart-pill" href="warenkorb.html" aria-label="Warenkorb öffnen">
+          Warenkorb
+          <span class="cart-count">0</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <section class="checkout-page-section">
+      <div class="container">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="index.html">Startseite</a>
+          <span>/</span>
+          <a href="warenkorb.html">Warenkorb</a>
+          <span>/</span>
+          <a href="checkout-start.html">Checkout</a>
+          <span>/</span>
+          <span>Zahlung</span>
+        </nav>
+
+        <div class="checkout-header">
+          <div>
+            <p class="section-kicker">Checkout</p>
+            <h1>Wie möchtest du bezahlen?</h1>
+            <p class="hero-lead">
+              Wähle eine Zahlungsmethode. Die Zahlung wird im Prototyp nicht ausgeführt,
+              aber der Ablauf wird realistisch dargestellt.
+            </p>
+          </div>
+        </div>
+
+        <nav class="checkout-stepper" aria-label="Checkout Fortschritt">
+          <ol>
+            <li class="is-complete">
+              <span>1</span>
+              Start
+            </li>
+            <li class="is-complete">
+              <span>2</span>
+              Adresse
+            </li>
+            <li class="is-complete">
+              <span>3</span>
+              Lieferung
+            </li>
+            <li class="is-current">
+              <span>4</span>
+              Zahlung
+            </li>
+            <li>
+              <span>5</span>
+              Prüfen
+            </li>
+          </ol>
+        </nav>
+
+        <div class="checkout-layout">
+          <section class="checkout-form-card" aria-label="Zahlungsmethode auswählen">
+            <form class="checkout-form" action="checkout-review.html" data-payment-form>
+              <div class="form-section-header">
+                <h2>Zahlungsmethode</h2>
+                <p>
+                  Die Optionen sind klar unterscheidbar und zeigen direkt, was im nächsten Schritt passiert.
+                </p>
+              </div>
+
+              <fieldset class="payment-option-group">
+                <legend>Zahlungsart auswählen</legend>
+
+                <label class="payment-option-card">
+                  <input
+                    type="radio"
+                    name="paymentOption"
+                    value="twint"
+                    data-payment-option
+                    data-payment-title="TWINT"
+                    checked
+                  />
+
+                  <span class="payment-option-content">
+                    <span class="payment-option-icon">📱</span>
+                    <span>
+                      <strong>TWINT</strong>
+                      <small>Schnell mit dem Smartphone bezahlen</small>
+                    </span>
+                    <b>empfohlen</b>
+                  </span>
+                </label>
+
+                <label class="payment-option-card">
+                  <input
+                    type="radio"
+                    name="paymentOption"
+                    value="credit-card"
+                    data-payment-option
+                    data-payment-title="Kreditkarte"
+                  />
+
+                  <span class="payment-option-content">
+                    <span class="payment-option-icon">💳</span>
+                    <span>
+                      <strong>Kreditkarte</strong>
+                      <small>Visa oder Mastercard</small>
+                    </span>
+                    <b>sicher</b>
+                  </span>
+                </label>
+
+                <label class="payment-option-card">
+                  <input
+                    type="radio"
+                    name="paymentOption"
+                    value="invoice"
+                    data-payment-option
+                    data-payment-title="Rechnung"
+                  />
+
+                  <span class="payment-option-content">
+                    <span class="payment-option-icon">🧾</span>
+                    <span>
+                      <strong>Rechnung</strong>
+                      <small>Bezahlung nach Erhalt der Bestellung</small>
+                    </span>
+                    <b>CHF 0.00</b>
+                  </span>
+                </label>
+              </fieldset>
+
+              <div class="payment-detail-panel" data-payment-detail="twint">
+                <span>📱</span>
+                <div>
+                  <h2>TWINT-Zahlung</h2>
+                  <p>
+                    Nach der Bestellprüfung würdest du im echten Shop zur TWINT-Zahlung weitergeleitet.
+                  </p>
+                </div>
+              </div>
+
+              <div class="payment-detail-panel" data-payment-detail="credit-card" hidden>
+                <span>💳</span>
+                <div>
+                  <h2>Kreditkartendaten</h2>
+                  <p>
+                    Im Prototyp werden keine echten Zahlungsdaten verarbeitet. Die Felder zeigen nur,
+                    wie der Schritt im echten Checkout aussehen würde.
+                  </p>
+
+                  <div class="payment-card-fields">
+                    <div class="form-field">
+                      <label for="card-name">Name auf der Karte</label>
+                      <input id="card-name" type="text" placeholder="Max Muster" />
+                    </div>
+
+                    <div class="form-field">
+                      <label for="card-number">Kartennummer</label>
+                      <input id="card-number" type="text" placeholder="•••• •••• •••• ••••" />
+                    </div>
+
+                    <div class="form-grid two-columns">
+                      <div class="form-field">
+                        <label for="card-date">Ablaufdatum</label>
+                        <input id="card-date" type="text" placeholder="MM/JJ" />
+                      </div>
+
+                      <div class="form-field">
+                        <label for="card-cvc">CVC</label>
+                        <input id="card-cvc" type="text" placeholder="123" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="payment-detail-panel" data-payment-detail="invoice" hidden>
+                <span>🧾</span>
+                <div>
+                  <h2>Kauf auf Rechnung</h2>
+                  <p>
+                    Die Rechnung wird zusammen mit der Bestellbestätigung per E-Mail zugestellt.
+                    Zahlungsfrist: 30 Tage.
+                  </p>
+                </div>
+              </div>
+
+              <div class="form-actions">
+                <a class="btn btn-secondary" href="checkout-lieferung.html">
+                  Zurück
+                </a>
+
+                <button class="btn btn-primary" type="submit">
+                  Weiter zur Prüfung
+                </button>
+              </div>
+            </form>
+          </section>
+
+          <aside class="checkout-summary-card" aria-label="Checkout Übersicht">
+            <h2>Bestellung</h2>
+
+            <div class="checkout-summary-status">
+              <span>4</span>
+              <p>Zahlung auswählen</p>
+            </div>
+
+            <div class="summary-line">
+              <span>Aktuelle Auswahl</span>
+              <strong data-payment-summary-title>TWINT</strong>
+            </div>
+
+            <div class="summary-line">
+              <span>Sicherheit</span>
+              <strong>verschlüsselt</strong>
+            </div>
+
+            <div class="summary-line">
+              <span>Nächster Schritt</span>
+              <strong>Prüfen</strong>
+            </div>
+
+            <div class="summary-total">
+              <span>Status</span>
+              <strong>bereit</strong>
+            </div>
+
+            <p class="summary-helper">
+              Du kannst die Zahlungsart in der Bestellprüfung nochmals kontrollieren.
+            </p>
+
+            <a class="btn btn-secondary full-width" href="checkout-lieferung.html">
+              Lieferung bearbeiten
+            </a>
+          </aside>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <a href="index.html" class="footer-brand">GreenNest</a>
+        <p>
+          Nachhaltige Pflanzen und Zubehör für ein grüneres Zuhause.
+          Dieser Prototyp zeigt den vollständigen Kaufprozess.
+        </p>
+      </div>
+
+      <div>
+        <h2>Checkout</h2>
+        <a href="checkout-lieferung.html">Lieferung</a>
+        <a href="checkout-zahlung.html">Zahlung</a>
+        <a href="checkout-review.html">Prüfen</a>
+      </div>
+
+      <div>
+        <h2>UX-Fokus</h2>
+        <p>
+          Die Zahlungsarten sind klar strukturiert und vermeiden Unsicherheit durch erklärende Hinweise.
+        </p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
