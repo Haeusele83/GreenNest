@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="de-CH">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Wunschliste – GreenNest</title>
+  <meta
+    name="description"
+    content="Gespeicherte Lieblingsprodukte im GreenNest Webshop."
+  />
+
+  <link rel="stylesheet" href="style.css" />
+  <script src="script.js" defer></script>
+</head>
+
+<body>
+  <a class="skip-link" href="#main-content">Direkt zum Inhalt</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="brand" aria-label="GreenNest Startseite">
+        <span class="brand-mark">GN</span>
+        <span class="brand-text">GreenNest</span>
+      </a>
+
+      <nav class="main-nav" aria-label="Hauptnavigation">
+        <a href="produkte.html">Pflanzen</a>
+        <a href="produkte.html#pflegeleicht">Pflegeleicht</a>
+        <a href="produkte.html#zubehoer">Zubehör</a>
+        <a href="index.html#beratung">Beratung</a>
+      </nav>
+
+      <div class="header-actions">
+        <a class="icon-link" href="produkte.html#produktsuche">Suchen</a>
+
+        <a class="cart-pill" href="warenkorb.html" aria-label="Warenkorb öffnen">
+          Warenkorb
+          <span class="cart-count">0</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <section class="wishlist-page-section">
+      <div class="container">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="index.html">Startseite</a>
+          <span>/</span>
+          <span>Wunschliste</span>
+        </nav>
+
+        <div class="wishlist-header">
+          <div>
+            <p class="section-kicker">Wunschliste</p>
+            <h1>Deine gespeicherten Lieblingsprodukte.</h1>
+            <p class="hero-lead">
+              Speichere interessante Pflanzen und Zubehör, bevor du dich entscheidest.
+              Deine Auswahl bleibt im Browser gespeichert.
+            </p>
+          </div>
+
+          <a class="btn btn-secondary" href="produkte.html">
+            Weitere Produkte ansehen
+          </a>
+        </div>
+
+        <div class="wishlist-empty" data-wishlist-empty hidden>
+          <div class="feature-icon">♡</div>
+          <h2>Deine Wunschliste ist leer</h2>
+          <p>
+            Markiere Produkte mit dem Herz-Symbol, um sie hier zu speichern.
+          </p>
+          <a class="btn btn-primary" href="produkte.html">
+            Produkte entdecken
+          </a>
+        </div>
+
+        <div class="wishlist-grid" data-wishlist-items>
+          <p class="muted-text">Wunschliste wird geladen...</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <a href="index.html" class="footer-brand">GreenNest</a>
+        <p>
+          Nachhaltige Pflanzen und Zubehör für ein grüneres Zuhause.
+          Dieser Prototyp zeigt den vollständigen Kaufprozess.
+        </p>
+      </div>
+
+      <div>
+        <h2>Shop</h2>
+        <a href="produkte.html">Pflanzen</a>
+        <a href="wunschliste.html">Wunschliste</a>
+        <a href="warenkorb.html">Warenkorb</a>
+      </div>
+
+      <div>
+        <h2>UX-Fokus</h2>
+        <p>
+          Die Wunschliste unterstützt Nutzerinnen und Nutzer beim Vergleichen und späteren Entscheiden.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <div class="toast" data-toast hidden role="status" aria-live="polite">
+    Aktion ausgeführt.
+  </div>
+</body>
+</html>

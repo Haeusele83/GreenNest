@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="de-CH">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>KI-Pflanzenfinder – GreenNest</title>
+  <meta
+    name="description"
+    content="Finde mit dem GreenNest KI-Pflanzenfinder eine passende Zimmerpflanze für Licht, Raum und Pflegelevel."
+  />
+
+  <link rel="stylesheet" href="style.css" />
+  <script src="script.js" defer></script>
+</head>
+
+<body>
+  <a class="skip-link" href="#main-content">Direkt zum Inhalt</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="brand" aria-label="GreenNest Startseite">
+        <span class="brand-mark">GN</span>
+        <span class="brand-text">GreenNest</span>
+      </a>
+
+      <nav class="main-nav" aria-label="Hauptnavigation">
+        <a href="produkte.html">Pflanzen</a>
+        <a href="pflanzenfinder.html" aria-current="page">Pflanzenfinder</a>
+        <a href="produkte.html#zubehoer">Zubehör</a>
+        <a href="retouren.html">Retouren</a>
+      </nav>
+
+      <div class="header-actions">
+        <a class="icon-link" href="produkte.html#produktsuche">Suchen</a>
+
+        <a class="cart-pill" href="warenkorb.html" aria-label="Warenkorb öffnen">
+          Warenkorb
+          <span class="cart-count">0</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <section class="finder-page-section">
+      <div class="container">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="index.html">Startseite</a>
+          <span>/</span>
+          <span>KI-Pflanzenfinder</span>
+        </nav>
+
+        <div class="finder-hero-grid">
+          <div>
+            <p class="section-kicker">KI-Pflanzenfinder</p>
+            <h1>Finde die Pflanze, die wirklich zu deinem Alltag passt.</h1>
+            <p class="hero-lead">
+              Beantworte wenige Fragen zu Licht, Raum und Pflegeaufwand. Der Prototyp simuliert
+              eine KI-gestützte Empfehlung und zeigt dir passende Produkte mit Begründung.
+            </p>
+
+            <div class="finder-ai-note">
+              <span>✨</span>
+              <p>
+                Prototyp-Funktion: Die Empfehlung wird lokal und regelbasiert berechnet.
+                Es werden keine Daten an eine externe KI gesendet.
+              </p>
+            </div>
+          </div>
+
+          <aside class="finder-hero-card">
+            <span>🌿</span>
+            <h2>Für Einsteigerinnen und Einsteiger</h2>
+            <p>
+              Der Pflanzenfinder reduziert Unsicherheit und hilft, Fehlkäufe zu vermeiden.
+            </p>
+          </aside>
+        </div>
+
+        <div class="finder-layout">
+          <section class="finder-form-card" aria-label="Pflanzenfinder Fragen">
+            <form class="finder-form" data-plant-finder-form>
+              <div class="form-section-header">
+                <h2>Deine Situation</h2>
+                <p>
+                  Wähle pro Frage die Antwort, die am ehesten passt. Danach erhältst du eine Empfehlung.
+                </p>
+              </div>
+
+              <fieldset class="finder-question">
+                <legend>Wie hell ist der Standort?</legend>
+
+                <label>
+                  <input type="radio" name="light" value="bright" checked />
+                  <span>Hell, aber ohne direkte Mittagssonne</span>
+                </label>
+
+                <label>
+                  <input type="radio" name="light" value="medium" />
+                  <span>Halbschattig</span>
+                </label>
+
+                <label>
+                  <input type="radio" name="light" value="low" />
+                  <span>Eher wenig Licht</span>
+                </label>
+              </fieldset>
+
+              <fieldset class="finder-question">
+                <legend>Wie viel Pflege möchtest du übernehmen?</legend>
+
+                <label>
+                  <input type="radio" name="care" value="very-low" checked />
+                  <span>So wenig wie möglich</span>
+                </label>
+
+                <label>
+                  <input type="radio" name="care" value="normal" />
+                  <span>Normal, aber unkompliziert</span>
+                </label>
+
+                <label>
+                  <input type="radio" name="care" value="more" />
+                  <span>Etwas mehr Pflege ist okay</span>
+                </label>
+              </fieldset>
+
+              <fieldset class="finder-question">
+                <legend>Für welchen Raum suchst du eine Pflanze?</legend>
+
+                <label>
+                  <input type="radio" name="room" value="living" checked />
+                  <span>Wohnzimmer</span>
+                </label>
+
+                <label>
+                  <input type="radio" name="room" value="bedroom" />
+                  <span>Schlafzimmer</span>
+                </label>
+
+                <label>
+                  <input type="radio" name="room" value="office" />
+                  <span>Büro</span>
+                </label>
+
+                <label>
+                  <input type="radio" name="room" value="bathroom" />
+                  <span>Bad</span>
+                </label>
+              </fieldset>
+
+              <fieldset class="finder-question">
+                <legend>Was ist dir besonders wichtig?</legend>
+
+                <label>
+                  <input type="radio" name="priority" value="robust" checked />
+                  <span>Robust und fehlertolerant</span>
+                </label>
+
+                <label>
+                  <input type="radio" name="priority" value="decorative" />
+                  <span>Dekorative Wirkung</span>
+                </label>
+
+                <label>
+                  <input type="radio" name="priority" value="small" />
+                  <span>Geeignet für wenig Platz</span>
+                </label>
+              </fieldset>
+
+              <div class="form-actions">
+                <button class="btn btn-primary" type="submit">
+                  Empfehlung berechnen
+                </button>
+
+                <button class="btn btn-secondary" type="reset" data-finder-reset>
+                  Zurücksetzen
+                </button>
+              </div>
+            </form>
+          </section>
+
+          <aside class="finder-result-card" aria-live="polite">
+            <div class="finder-result-placeholder" data-finder-placeholder>
+              <div class="feature-icon">✨</div>
+              <h2>Deine Empfehlung erscheint hier.</h2>
+              <p>
+                Nach der Auswertung zeigt dir der Pflanzenfinder die beste Empfehlung
+                und zwei Alternativen.
+              </p>
+            </div>
+
+            <div class="finder-result" data-finder-result hidden>
+              <p class="section-kicker">KI-Auswertung</p>
+              <h2 data-finder-title>Empfehlung</h2>
+              <p data-finder-reason></p>
+
+              <div class="finder-main-product">
+                <img data-finder-image src="assets/images/monstera-easy.jpg" alt="" />
+                <div>
+                  <p class="product-category" data-finder-category></p>
+                  <h3 data-finder-name></h3>
+                  <p class="finder-score" data-finder-score></p>
+                  <strong data-finder-price></strong>
+                </div>
+              </div>
+
+              <div class="finder-actions">
+                <button class="btn btn-primary" type="button" data-finder-add-cart>
+                  In Warenkorb
+                </button>
+
+                <button class="btn btn-secondary" type="button" data-finder-add-wishlist>
+                  Merken
+                </button>
+
+                <a class="btn btn-secondary" href="produkt-detail.html">
+                  Details ansehen
+                </a>
+              </div>
+
+              <div class="finder-alternatives">
+                <h3>Weitere passende Optionen</h3>
+                <div data-finder-alternatives></div>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <a href="index.html" class="footer-brand">GreenNest</a>
+        <p>
+          Nachhaltige Pflanzen und Zubehör für ein grüneres Zuhause.
+          Dieser Prototyp zeigt den vollständigen Kaufprozess.
+        </p>
+      </div>
+
+      <div>
+        <h2>Beratung</h2>
+        <a href="pflanzenfinder.html">Pflanzenfinder</a>
+        <a href="pflegehinweise.html">Pflegehinweise</a>
+        <a href="produkte.html">Produkte</a>
+      </div>
+
+      <div>
+        <h2>UX-Fokus</h2>
+        <p>
+          Der Pflanzenfinder reduziert Unsicherheit und unterstützt eine passendere Produktauswahl.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <div class="toast" data-toast hidden role="status" aria-live="polite">
+    Aktion ausgeführt.
+  </div>
+</body>
+</html>

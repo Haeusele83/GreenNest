@@ -1244,3 +1244,1263 @@ document.addEventListener("DOMContentLoaded", () => {
     element.textContent = "0";
   });
 });
+document.addEventListener("DOMContentLoaded", () => {
+  const WISHLIST_KEY = "greennestWishlist";
+  const CART_KEY = "greennestCart";
+
+  const wishlistProducts = {
+    "monstera-easy": {
+      id: "monstera-easy",
+      name: "Monstera Easy",
+      category: "Pflegeleicht · hell bis halbschattig",
+      description: "Topfgrösse S · ca. 35 cm · Pflegekarte inklusive",
+      price: 34.9,
+      image: "assets/images/monstera-easy.jpg"
+    },
+    "sansevieria-calm": {
+      id: "sansevieria-calm",
+      name: "Sansevieria Calm",
+      category: "Sehr pflegeleicht · wenig Wasser",
+      description: "Robuste Pflanze · wenig Wasser · ideal für Büro und Schlafzimmer",
+      price: 29.9,
+      image: "assets/images/sansevieria-calm.jpg"
+    },
+    "pothos-starter": {
+      id: "pothos-starter",
+      name: "Pothos Starter",
+      category: "Pflegeleicht · wächst schnell",
+      description: "Hängepflanze · ideal für Regale und kleine Wohnungen",
+      price: 24.9,
+      image: "assets/images/pothos-starter.jpg"
+    },
+    "calathea-soft": {
+      id: "calathea-soft",
+      name: "Calathea Soft",
+      category: "Mittel · liebt Luftfeuchtigkeit",
+      description: "Dekorative Pflanze · indirektes Licht · ruhige Räume",
+      price: 39.9,
+      image: "assets/images/calathea-soft.jpg"
+    },
+    "ficus-elastica-green": {
+      id: "ficus-elastica-green",
+      name: "Ficus Elastica Green",
+      category: "Mittel · heller Standort",
+      description: "Elegante Pflanze · kräftige Blätter · moderner Look",
+      price: 44.9,
+      image: "assets/images/ficus-elastica-green.jpg"
+    },
+    "peace-lily-home": {
+      id: "peace-lily-home",
+      name: "Peace Lily Home",
+      category: "Mittel · ruhige Räume",
+      description: "Friedenslilie · halbschattig · mit weisser Blüte",
+      price: 32.9,
+      image: "assets/images/peace-lily-home.jpg"
+    },
+    "aloe-vera-pure": {
+      id: "aloe-vera-pure",
+      name: "Aloe Vera Pure",
+      category: "Einfach · sonniger Standort",
+      description: "Sukkulente · wenig Wasser · ideal für helle Fensterplätze",
+      price: 22.9,
+      image: "assets/images/aloe-vera-pure.jpg"
+    },
+    "zz-plant-robust": {
+      id: "zz-plant-robust",
+      name: "ZZ Plant Robust",
+      category: "Einfach · wenig Licht",
+      description: "Robuste Pflanze · geeignet für Büro, Flur und Schlafzimmer",
+      price: 36.9,
+      image: "assets/images/zz-plant-robust.jpg"
+    },
+    "keramiktopf-sand": {
+      id: "keramiktopf-sand",
+      name: "Keramiktopf Sand",
+      category: "Zubehör · Keramik",
+      description: "Schlichter Übertopf in Sandfarbe · passend zu vielen Pflanzen",
+      price: 16.9,
+      image: "assets/images/keramiktopf-sand.jpg"
+    },
+    "bio-pflanzenerde": {
+      id: "bio-pflanzenerde",
+      name: "Bio Pflanzenerde",
+      category: "Zubehör · nachhaltig",
+      description: "Torffreie Erde · geeignet für Zimmerpflanzen",
+      price: 12.9,
+      image: "assets/images/bio-pflanzenerde.jpg"
+    },
+    "pflege-starter-set": {
+      id: "pflege-starter-set",
+      name: "Pflege Starter Set",
+      category: "Zubehör · für den Start",
+      description: "Sprühflasche, Pflegekarte und kleine Giesshilfe",
+      price: 19.9,
+      image: "assets/images/pflege-starter-set.jpg"
+    },
+    "giesskanne-minimal": {
+      id: "giesskanne-minimal",
+      name: "Giesskanne Minimal",
+      category: "Zubehör · Pflege",
+      description: "Kleine Giesskanne mit schmaler Tülle für den Innenbereich",
+      price: 21.9,
+      image: "assets/images/giesskanne-minimal.jpg"
+    }
+  };
+
+  const formatCHF = (value) => `CHF ${Number(value).toFixed(2)}`;
+
+  const readStorage = (key, fallback) => {
+    try {
+      return JSON.parse(localStorage.getItem(key)) || fallback;
+    } catch {
+      return fallback;
+    }
+  };
+
+  const writeStorage = (key, value) => {
+    localStorage.setItem(key, JSON.stringify(value));
+  };
+
+  const slugifyWishlist = (text) => {
+    return text
+      .toLowerCase()
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/^-|-$/g, "");
+  };
+
+  const getWishlist = () => readStorage(WISHLIST_KEY, []);
+
+  const saveWishlist = (wishlist) => {
+    writeStorage(WISHLIST_KEY, wishlist);
+    updateWishlistCount();
+    updateWishlistButtons();
+  };
+
+  const getCart = () => readStorage(CART_KEY, []);
+
+  const saveCart = (cart) => {
+    writeStorage(CART_KEY, cart);
+    updateCartCounterFromWishlistBlock();
+  };
+
+  function ensureLiveRegion() {
+    let region = document.querySelector("[data-live-region]");
+
+    if (!region) {
+      region = document.createElement("div");
+      region.className = "sr-only";
+      region.setAttribute("aria-live", "polite");
+      region.setAttribute("aria-atomic", "true");
+      region.dataset.liveRegion = "";
+      document.body.appendChild(region);
+    }
+
+    return region;
+  }
+
+  function announce(message) {
+    const toast = document.querySelector("[data-toast]");
+    const region = ensureLiveRegion();
+
+    region.textContent = message;
+
+    if (toast) {
+      toast.textContent = message;
+      toast.hidden = false;
+
+      window.setTimeout(() => {
+        toast.hidden = true;
+      }, 2400);
+    }
+  }
+
+  function ensureWishlistHeaderLink() {
+    document.querySelectorAll(".header-actions").forEach((actions) => {
+      if (actions.querySelector(".wishlist-pill")) {
+        return;
+      }
+
+      const wishlistLink = document.createElement("a");
+      wishlistLink.className = "wishlist-pill";
+      wishlistLink.href = "wunschliste.html";
+      wishlistLink.setAttribute("aria-label", "Wunschliste öffnen");
+      wishlistLink.innerHTML = `
+        Wunschliste
+        <span class="wishlist-count">0</span>
+      `;
+
+      const cartLink = actions.querySelector(".cart-pill");
+
+      if (cartLink) {
+        actions.insertBefore(wishlistLink, cartLink);
+      } else {
+        actions.appendChild(wishlistLink);
+      }
+    });
+  }
+
+  function updateWishlistCount() {
+    const wishlist = getWishlist();
+
+    document.querySelectorAll(".wishlist-count").forEach((count) => {
+      count.textContent = String(wishlist.length);
+    });
+  }
+
+  function updateCartCounterFromWishlistBlock() {
+    const cart = getCart();
+    const count = cart.reduce((sum, item) => sum + item.quantity, 0);
+
+    document.querySelectorAll(".cart-count").forEach((element) => {
+      element.textContent = String(count);
+    });
+  }
+
+  function getProductIdFromCard(card) {
+    if (card.dataset.productId) {
+      return card.dataset.productId;
+    }
+
+    if (card.dataset.name) {
+      return slugifyWishlist(card.dataset.name);
+    }
+
+    return null;
+  }
+
+  function createWishlistButton(productId) {
+    const button = document.createElement("button");
+    button.className = "wishlist-toggle";
+    button.type = "button";
+    button.dataset.wishlistToggle = productId;
+    button.setAttribute("aria-pressed", "false");
+    button.setAttribute("aria-label", "Produkt zur Wunschliste hinzufügen");
+    button.innerHTML = `
+      <span aria-hidden="true">♡</span>
+      <span class="sr-only">Zur Wunschliste hinzufügen</span>
+    `;
+
+    return button;
+  }
+
+  function injectWishlistButtons() {
+    document.querySelectorAll(".product-card").forEach((card) => {
+      const productId = getProductIdFromCard(card);
+
+      if (!productId || !wishlistProducts[productId]) {
+        return;
+      }
+
+      const imageArea = card.querySelector(".product-image-card") || card;
+
+      if (imageArea.querySelector("[data-wishlist-toggle]")) {
+        return;
+      }
+
+      imageArea.appendChild(createWishlistButton(productId));
+    });
+
+    const detailImage = document.querySelector(".product-main-image");
+
+    if (detailImage && !detailImage.querySelector("[data-wishlist-toggle]")) {
+      detailImage.appendChild(createWishlistButton("monstera-easy"));
+    }
+  }
+
+  function updateWishlistButtons() {
+    const wishlist = getWishlist();
+
+    document.querySelectorAll("[data-wishlist-toggle]").forEach((button) => {
+      const productId = button.dataset.wishlistToggle;
+      const isActive = wishlist.includes(productId);
+
+      button.classList.toggle("is-active", isActive);
+      button.setAttribute("aria-pressed", String(isActive));
+      button.setAttribute(
+        "aria-label",
+        isActive
+          ? "Produkt aus Wunschliste entfernen"
+          : "Produkt zur Wunschliste hinzufügen"
+      );
+
+      button.innerHTML = `
+        <span aria-hidden="true">${isActive ? "♥" : "♡"}</span>
+        <span class="sr-only">
+          ${isActive ? "Aus Wunschliste entfernen" : "Zur Wunschliste hinzufügen"}
+        </span>
+      `;
+    });
+  }
+
+  function toggleWishlist(productId) {
+    const product = wishlistProducts[productId];
+
+    if (!product) {
+      return;
+    }
+
+    const wishlist = getWishlist();
+    const isActive = wishlist.includes(productId);
+
+    const nextWishlist = isActive
+      ? wishlist.filter((id) => id !== productId)
+      : [...wishlist, productId];
+
+    saveWishlist(nextWishlist);
+
+    announce(
+      isActive
+        ? `${product.name} wurde aus der Wunschliste entfernt.`
+        : `${product.name} wurde zur Wunschliste hinzugefügt.`
+    );
+
+    renderWishlistPage();
+  }
+
+  function addWishlistProductToCart(productId) {
+    const product = wishlistProducts[productId];
+
+    if (!product) {
+      return;
+    }
+
+    const cart = getCart();
+    const existingItem = cart.find((item) => item.id === productId);
+
+    if (existingItem) {
+      existingItem.quantity += 1;
+    } else {
+      cart.push({
+        id: productId,
+        quantity: 1
+      });
+    }
+
+    saveCart(cart);
+    announce(`${product.name} wurde dem Warenkorb hinzugefügt.`);
+  }
+
+  function renderWishlistPage() {
+    const container = document.querySelector("[data-wishlist-items]");
+    const emptyState = document.querySelector("[data-wishlist-empty]");
+
+    if (!container) {
+      return;
+    }
+
+    const wishlist = getWishlist().filter((id) => wishlistProducts[id]);
+
+    container.innerHTML = "";
+
+    if (wishlist.length === 0) {
+      container.hidden = true;
+
+      if (emptyState) {
+        emptyState.hidden = false;
+      }
+
+      return;
+    }
+
+    container.hidden = false;
+
+    if (emptyState) {
+      emptyState.hidden = true;
+    }
+
+    wishlist.forEach((productId) => {
+      const product = wishlistProducts[productId];
+
+      const card = document.createElement("article");
+      card.className = "wishlist-item-card";
+
+      card.innerHTML = `
+        <img src="${product.image}" alt="${product.name}" />
+
+        <div>
+          <p class="product-category">${product.category}</p>
+          <h2>${product.name}</h2>
+          <p>${product.description}</p>
+
+          <div class="wishlist-actions">
+            <button class="btn btn-primary" type="button" data-wishlist-add-cart="${product.id}">
+              In Warenkorb
+            </button>
+
+            <button class="btn btn-secondary" type="button" data-wishlist-remove="${product.id}">
+              Entfernen
+            </button>
+          </div>
+        </div>
+
+        <strong class="wishlist-item-price">${formatCHF(product.price)}</strong>
+      `;
+
+      container.appendChild(card);
+    });
+  }
+
+  document.addEventListener("click", (event) => {
+    const wishlistButton = event.target.closest("[data-wishlist-toggle]");
+
+    if (wishlistButton) {
+      toggleWishlist(wishlistButton.dataset.wishlistToggle);
+      return;
+    }
+
+    const removeButton = event.target.closest("[data-wishlist-remove]");
+
+    if (removeButton) {
+      toggleWishlist(removeButton.dataset.wishlistRemove);
+      return;
+    }
+
+    const addCartButton = event.target.closest("[data-wishlist-add-cart]");
+
+    if (addCartButton) {
+      addWishlistProductToCart(addCartButton.dataset.wishlistAddCart);
+    }
+  });
+
+  ensureWishlistHeaderLink();
+  injectWishlistButtons();
+  updateWishlistCount();
+  updateWishlistButtons();
+  updateCartCounterFromWishlistBlock();
+  renderWishlistPage();
+});
+document.addEventListener("DOMContentLoaded", () => {
+  const trackingDateElement = document.querySelector("[data-tracking-order-date]");
+
+  if (!trackingDateElement) {
+    return;
+  }
+
+  const ORDER_KEY = "greennestOrder";
+
+  const readStorage = (key, fallback) => {
+    try {
+      return JSON.parse(localStorage.getItem(key)) || fallback;
+    } catch {
+      return fallback;
+    }
+  };
+
+  const order = readStorage(ORDER_KEY, null);
+
+  const formatDate = (date) => {
+    return date.toLocaleDateString("de-CH", {
+      day: "2-digit",
+      month: "2-digit",
+      year: "numeric"
+    });
+  };
+
+  if (order && order.createdAt) {
+    const orderDate = new Date(order.createdAt);
+    trackingDateElement.textContent = formatDate(orderDate);
+  }
+
+  const deliveryInfoElement = document.querySelector("[data-tracking-delivery-info]");
+  const estimateElement = document.querySelector("[data-tracking-estimate]");
+
+  if (order && order.delivery) {
+    if (deliveryInfoElement) {
+      deliveryInfoElement.textContent =
+        order.delivery.option === "pickup"
+          ? "Abholinformation folgt per E-Mail"
+          : "Tracking-Link folgt per E-Mail";
+    }
+
+    if (estimateElement) {
+      if (order.delivery.option === "express") {
+        estimateElement.textContent = "voraussichtlich am nächsten Werktag";
+      } else if (order.delivery.option === "pickup") {
+        estimateElement.textContent = "voraussichtlich in 1–2 Werktagen abholbereit";
+      } else {
+        estimateElement.textContent = "voraussichtlich in 2–3 Werktagen";
+      }
+    }
+  }
+});
+document.addEventListener("DOMContentLoaded", () => {
+  function injectReturnLinks() {
+    document.querySelectorAll(".main-nav").forEach((nav) => {
+      if (nav.querySelector('a[href="retouren.html"]')) {
+        return;
+      }
+
+      const link = document.createElement("a");
+      link.href = "retouren.html";
+      link.textContent = "Retouren";
+
+      nav.appendChild(link);
+    });
+
+    document.querySelectorAll(".site-footer").forEach((footer) => {
+      if (footer.querySelector('a[href="retouren.html"]')) {
+        return;
+      }
+
+      const footerColumns = footer.querySelectorAll(".footer-grid > div");
+      const secondColumn = footerColumns[1];
+
+      if (secondColumn) {
+        const link = document.createElement("a");
+        link.href = "retouren.html";
+        link.textContent = "Retouren";
+        secondColumn.appendChild(link);
+      }
+    });
+  }
+
+  function enhanceLiveRegions() {
+    document.querySelectorAll(".cart-count").forEach((count) => {
+      count.setAttribute("aria-live", "polite");
+      count.setAttribute("aria-atomic", "true");
+    });
+
+    document.querySelectorAll(".wishlist-count").forEach((count) => {
+      count.setAttribute("aria-live", "polite");
+      count.setAttribute("aria-atomic", "true");
+    });
+
+    document.querySelectorAll("[data-toast]").forEach((toast) => {
+      toast.setAttribute("role", "status");
+      toast.setAttribute("aria-live", "polite");
+      toast.setAttribute("aria-atomic", "true");
+    });
+  }
+
+  function enhanceFormAccessibility() {
+    const fields = document.querySelectorAll("input, select, textarea");
+
+    fields.forEach((field) => {
+      if (field.hasAttribute("data-required")) {
+        field.setAttribute("aria-required", "true");
+      }
+
+      if (!field.id) {
+        return;
+      }
+
+      const error = document.querySelector(`[data-error-for="${field.id}"]`);
+
+      if (error) {
+        const errorId = `${field.id}-error`;
+        error.id = errorId;
+
+        const existingDescription = field.getAttribute("aria-describedby");
+
+        if (existingDescription) {
+          if (!existingDescription.includes(errorId)) {
+            field.setAttribute("aria-describedby", `${existingDescription} ${errorId}`);
+          }
+        } else {
+          field.setAttribute("aria-describedby", errorId);
+        }
+      }
+    });
+
+    const forms = document.querySelectorAll("form");
+
+    forms.forEach((form) => {
+      const updateInvalidStates = () => {
+        window.setTimeout(() => {
+          form.querySelectorAll("input, select, textarea").forEach((field) => {
+            const wrapper = field.closest(".form-field");
+            const hasError = wrapper && wrapper.classList.contains("has-error");
+
+            field.setAttribute("aria-invalid", hasError ? "true" : "false");
+          });
+        }, 0);
+      };
+
+      form.addEventListener("submit", updateInvalidStates);
+      form.addEventListener("input", updateInvalidStates);
+      form.addEventListener("blur", updateInvalidStates, true);
+    });
+  }
+
+  function allowToastDismissWithEscape() {
+    document.addEventListener("keydown", (event) => {
+      if (event.key !== "Escape") {
+        return;
+      }
+
+      document.querySelectorAll("[data-toast]").forEach((toast) => {
+        toast.hidden = true;
+      });
+    });
+  }
+
+  injectReturnLinks();
+  enhanceLiveRegions();
+  enhanceFormAccessibility();
+  allowToastDismissWithEscape();
+});
+document.addEventListener("DOMContentLoaded", () => {
+  const finderForm = document.querySelector("[data-plant-finder-form]");
+
+  if (!finderForm) {
+    return;
+  }
+
+  const CART_KEY = "greennestCart";
+  const WISHLIST_KEY = "greennestWishlist";
+
+  const finderProducts = {
+    "monstera-easy": {
+      id: "monstera-easy",
+      name: "Monstera Easy",
+      category: "Pflegeleicht · hell bis halbschattig",
+      price: 34.9,
+      image: "assets/images/monstera-easy.jpg",
+      traits: {
+        light: ["bright", "medium"],
+        care: ["normal"],
+        room: ["living", "office"],
+        priority: ["decorative", "robust"]
+      }
+    },
+    "sansevieria-calm": {
+      id: "sansevieria-calm",
+      name: "Sansevieria Calm",
+      category: "Sehr pflegeleicht · wenig Wasser",
+      price: 29.9,
+      image: "assets/images/sansevieria-calm.jpg",
+      traits: {
+        light: ["medium", "low"],
+        care: ["very-low"],
+        room: ["bedroom", "office"],
+        priority: ["robust", "small"]
+      }
+    },
+    "pothos-starter": {
+      id: "pothos-starter",
+      name: "Pothos Starter",
+      category: "Pflegeleicht · wächst schnell",
+      price: 24.9,
+      image: "assets/images/pothos-starter.jpg",
+      traits: {
+        light: ["medium", "low"],
+        care: ["very-low", "normal"],
+        room: ["living", "office"],
+        priority: ["small", "robust"]
+      }
+    },
+    "calathea-soft": {
+      id: "calathea-soft",
+      name: "Calathea Soft",
+      category: "Mittel · liebt Luftfeuchtigkeit",
+      price: 39.9,
+      image: "assets/images/calathea-soft.jpg",
+      traits: {
+        light: ["medium"],
+        care: ["more"],
+        room: ["bathroom", "living"],
+        priority: ["decorative"]
+      }
+    },
+    "zz-plant-robust": {
+      id: "zz-plant-robust",
+      name: "ZZ Plant Robust",
+      category: "Einfach · wenig Licht",
+      price: 36.9,
+      image: "assets/images/zz-plant-robust.jpg",
+      traits: {
+        light: ["low", "medium"],
+        care: ["very-low"],
+        room: ["office", "bedroom"],
+        priority: ["robust"]
+      }
+    },
+    "aloe-vera-pure": {
+      id: "aloe-vera-pure",
+      name: "Aloe Vera Pure",
+      category: "Einfach · sonniger Standort",
+      price: 22.9,
+      image: "assets/images/aloe-vera-pure.jpg",
+      traits: {
+        light: ["bright"],
+        care: ["very-low"],
+        room: ["living", "office"],
+        priority: ["small", "robust"]
+      }
+    }
+  };
+
+  const formatCHF = (value) => `CHF ${Number(value).toFixed(2)}`;
+
+  const readStorage = (key, fallback) => {
+    try {
+      return JSON.parse(localStorage.getItem(key)) || fallback;
+    } catch {
+      return fallback;
+    }
+  };
+
+  const writeStorage = (key, value) => {
+    localStorage.setItem(key, JSON.stringify(value));
+  };
+
+  const announce = (message) => {
+    const toast = document.querySelector("[data-toast]");
+
+    if (toast) {
+      toast.textContent = message;
+      toast.hidden = false;
+
+      window.setTimeout(() => {
+        toast.hidden = true;
+      }, 2400);
+    }
+  };
+
+  const getSelectedValues = () => {
+    const formData = new FormData(finderForm);
+
+    return {
+      light: formData.get("light"),
+      care: formData.get("care"),
+      room: formData.get("room"),
+      priority: formData.get("priority")
+    };
+  };
+
+  const scoreProduct = (product, answers) => {
+    let score = 0;
+
+    if (product.traits.light.includes(answers.light)) score += 30;
+    if (product.traits.care.includes(answers.care)) score += 30;
+    if (product.traits.room.includes(answers.room)) score += 20;
+    if (product.traits.priority.includes(answers.priority)) score += 20;
+
+    return score;
+  };
+
+  const buildReason = (product, answers) => {
+    const reasons = [];
+
+    if (product.traits.light.includes(answers.light)) {
+      reasons.push("der Standort gut zu den Lichtbedürfnissen passt");
+    }
+
+    if (product.traits.care.includes(answers.care)) {
+      reasons.push("der Pflegeaufwand zu deinem Alltag passt");
+    }
+
+    if (product.traits.room.includes(answers.room)) {
+      reasons.push("die Pflanze für den gewählten Raum geeignet ist");
+    }
+
+    if (product.traits.priority.includes(answers.priority)) {
+      reasons.push("sie deine wichtigste Priorität unterstützt");
+    }
+
+    return `Diese Empfehlung passt, weil ${reasons.join(", ")}.`;
+  };
+
+  const updateHeaderCounts = () => {
+    const cart = readStorage(CART_KEY, []);
+    const wishlist = readStorage(WISHLIST_KEY, []);
+
+    const cartCount = cart.reduce((sum, item) => sum + item.quantity, 0);
+
+    document.querySelectorAll(".cart-count").forEach((element) => {
+      element.textContent = String(cartCount);
+    });
+
+    document.querySelectorAll(".wishlist-count").forEach((element) => {
+      element.textContent = String(wishlist.length);
+    });
+  };
+
+  const addToCart = (productId) => {
+    const product = finderProducts[productId];
+    const cart = readStorage(CART_KEY, []);
+    const existingItem = cart.find((item) => item.id === productId);
+
+    if (existingItem) {
+      existingItem.quantity += 1;
+    } else {
+      cart.push({
+        id: productId,
+        quantity: 1
+      });
+    }
+
+    writeStorage(CART_KEY, cart);
+    updateHeaderCounts();
+    announce(`${product.name} wurde dem Warenkorb hinzugefügt.`);
+  };
+
+  const addToWishlist = (productId) => {
+    const product = finderProducts[productId];
+    const wishlist = readStorage(WISHLIST_KEY, []);
+
+    if (!wishlist.includes(productId)) {
+      wishlist.push(productId);
+      writeStorage(WISHLIST_KEY, wishlist);
+      updateHeaderCounts();
+      announce(`${product.name} wurde zur Wunschliste hinzugefügt.`);
+    } else {
+      announce(`${product.name} ist bereits auf deiner Wunschliste.`);
+    }
+  };
+
+  const placeholder = document.querySelector("[data-finder-placeholder]");
+  const resultBox = document.querySelector("[data-finder-result]");
+  const titleElement = document.querySelector("[data-finder-title]");
+  const reasonElement = document.querySelector("[data-finder-reason]");
+  const imageElement = document.querySelector("[data-finder-image]");
+  const categoryElement = document.querySelector("[data-finder-category]");
+  const nameElement = document.querySelector("[data-finder-name]");
+  const scoreElement = document.querySelector("[data-finder-score]");
+  const priceElement = document.querySelector("[data-finder-price]");
+  const alternativesElement = document.querySelector("[data-finder-alternatives]");
+  const addCartButton = document.querySelector("[data-finder-add-cart]");
+  const addWishlistButton = document.querySelector("[data-finder-add-wishlist]");
+
+  let currentRecommendationId = null;
+
+  function renderRecommendation() {
+    const answers = getSelectedValues();
+
+    const scoredProducts = Object.values(finderProducts)
+      .map((product) => ({
+        ...product,
+        score: scoreProduct(product, answers)
+      }))
+      .sort((a, b) => b.score - a.score);
+
+    const bestProduct = scoredProducts[0];
+    const alternatives = scoredProducts.slice(1, 3);
+
+    currentRecommendationId = bestProduct.id;
+
+    if (placeholder) {
+      placeholder.hidden = true;
+    }
+
+    if (resultBox) {
+      resultBox.hidden = false;
+    }
+
+    if (titleElement) {
+      titleElement.textContent = "Unsere beste Empfehlung";
+    }
+
+    if (reasonElement) {
+      reasonElement.textContent = buildReason(bestProduct, answers);
+    }
+
+    if (imageElement) {
+      imageElement.src = bestProduct.image;
+      imageElement.alt = bestProduct.name;
+    }
+
+    if (categoryElement) {
+      categoryElement.textContent = bestProduct.category;
+    }
+
+    if (nameElement) {
+      nameElement.textContent = bestProduct.name;
+    }
+
+    if (scoreElement) {
+      scoreElement.textContent = `${bestProduct.score}% Übereinstimmung mit deinen Antworten`;
+    }
+
+    if (priceElement) {
+      priceElement.textContent = formatCHF(bestProduct.price);
+    }
+
+    if (alternativesElement) {
+      alternativesElement.innerHTML = `
+        <div class="finder-alt-list">
+          ${alternatives.map((product) => `
+            <article class="finder-alt-item">
+              <strong>${product.name}</strong>
+              <span>${product.score}% passend</span>
+            </article>
+          `).join("")}
+        </div>
+      `;
+    }
+  }
+
+  finderForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+    renderRecommendation();
+  });
+
+  finderForm.addEventListener("reset", () => {
+    window.setTimeout(() => {
+      if (placeholder) placeholder.hidden = false;
+      if (resultBox) resultBox.hidden = true;
+      currentRecommendationId = null;
+    }, 0);
+  });
+
+  if (addCartButton) {
+    addCartButton.addEventListener("click", () => {
+      if (currentRecommendationId) {
+        addToCart(currentRecommendationId);
+      }
+    });
+  }
+
+  if (addWishlistButton) {
+    addWishlistButton.addEventListener("click", () => {
+      if (currentRecommendationId) {
+        addToWishlist(currentRecommendationId);
+      }
+    });
+  }
+});
+document.addEventListener("DOMContentLoaded", () => {
+  const careContainer = document.querySelector("[data-care-products]");
+
+  if (!careContainer) {
+    return;
+  }
+
+  const ORDER_KEY = "greennestOrder";
+
+  const careProducts = {
+    "monstera-easy": {
+      name: "Monstera Easy",
+      image: "assets/images/monstera-easy.jpg",
+      tips: [
+        "Hell bis halbschattig platzieren.",
+        "Erst giessen, wenn die oberste Erdschicht trocken ist.",
+        "Blätter gelegentlich mit einem feuchten Tuch abwischen."
+      ]
+    },
+    "sansevieria-calm": {
+      name: "Sansevieria Calm",
+      image: "assets/images/sansevieria-calm.jpg",
+      tips: [
+        "Kommt auch mit wenig Licht zurecht.",
+        "Sehr sparsam giessen.",
+        "Staunässe unbedingt vermeiden."
+      ]
+    },
+    "pothos-starter": {
+      name: "Pothos Starter",
+      image: "assets/images/pothos-starter.jpg",
+      tips: [
+        "Hell bis halbschattig platzieren.",
+        "Triebe gelegentlich zurückschneiden.",
+        "Erde leicht antrocknen lassen."
+      ]
+    },
+    "calathea-soft": {
+      name: "Calathea Soft",
+      image: "assets/images/calathea-soft.jpg",
+      tips: [
+        "Indirektes Licht wählen.",
+        "Luftfeuchtigkeit beachten.",
+        "Erde leicht feucht halten, aber nicht nass."
+      ]
+    },
+    "zz-plant-robust": {
+      name: "ZZ Plant Robust",
+      image: "assets/images/zz-plant-robust.jpg",
+      tips: [
+        "Sehr robust bei wenig Licht.",
+        "Nur selten giessen.",
+        "Ideal für Büro oder Schlafzimmer."
+      ]
+    },
+    "aloe-vera-pure": {
+      name: "Aloe Vera Pure",
+      image: "assets/images/aloe-vera-pure.jpg",
+      tips: [
+        "Sehr heller Standort ideal.",
+        "Wenig Wasser benötigt.",
+        "Topf mit guter Drainage verwenden."
+      ]
+    }
+  };
+
+  const readStorage = (key, fallback) => {
+    try {
+      return JSON.parse(localStorage.getItem(key)) || fallback;
+    } catch {
+      return fallback;
+    }
+  };
+
+  const emptyState = document.querySelector("[data-care-empty]");
+  const order = readStorage(ORDER_KEY, null);
+
+  careContainer.innerHTML = "";
+
+  const orderedItems = order && Array.isArray(order.items)
+    ? order.items.filter((item) => careProducts[item.id])
+    : [];
+
+  if (orderedItems.length === 0) {
+    if (emptyState) {
+      emptyState.hidden = false;
+    }
+
+    Object.values(careProducts).slice(0, 2).forEach((product) => {
+      const card = document.createElement("article");
+      card.className = "care-product-card";
+
+      card.innerHTML = `
+        <img src="${product.image}" alt="${product.name}" />
+
+        <div>
+          <h3>${product.name}</h3>
+          <p class="muted-text">Allgemeine Beispielhinweise</p>
+          <ul>
+            ${product.tips.map((tip) => `<li>${tip}</li>`).join("")}
+          </ul>
+        </div>
+      `;
+
+      careContainer.appendChild(card);
+    });
+
+    return;
+  }
+
+  if (emptyState) {
+    emptyState.hidden = true;
+  }
+
+  orderedItems.forEach((item) => {
+    const product = careProducts[item.id];
+
+    const card = document.createElement("article");
+    card.className = "care-product-card";
+
+    card.innerHTML = `
+      <img src="${product.image}" alt="${product.name}" />
+
+      <div>
+        <h3>${product.name}</h3>
+        <p class="muted-text">Hinweise passend zu deiner Bestellung</p>
+        <ul>
+          ${product.tips.map((tip) => `<li>${tip}</li>`).join("")}
+        </ul>
+      </div>
+    `;
+
+    careContainer.appendChild(card);
+  });
+});
+document.addEventListener("DOMContentLoaded", () => {
+  function injectAdvisoryLinks() {
+    document.querySelectorAll(".main-nav").forEach((nav) => {
+      if (!nav.querySelector('a[href="pflanzenfinder.html"]')) {
+        const finderLink = document.createElement("a");
+        finderLink.href = "pflanzenfinder.html";
+        finderLink.textContent = "Pflanzenfinder";
+        nav.appendChild(finderLink);
+      }
+
+      if (!nav.querySelector('a[href="pflegehinweise.html"]')) {
+        const careLink = document.createElement("a");
+        careLink.href = "pflegehinweise.html";
+        careLink.textContent = "Pflegehinweise";
+        nav.appendChild(careLink);
+      }
+    });
+  }
+
+  injectAdvisoryLinks();
+});
+document.addEventListener("DOMContentLoaded", () => {
+  const cleanNavigationItems = [
+    {
+      label: "Pflanzen",
+      href: "produkte.html"
+    },
+    {
+      label: "Pflanzenfinder",
+      href: "pflanzenfinder.html"
+    },
+    {
+      label: "Pflegehinweise",
+      href: "pflegehinweise.html"
+    },
+    {
+      label: "Retouren",
+      href: "retouren.html"
+    }
+  ];
+
+  const currentPage = window.location.pathname.split("/").pop() || "index.html";
+
+  document.querySelectorAll(".main-nav").forEach((nav) => {
+    nav.innerHTML = "";
+
+    cleanNavigationItems.forEach((item) => {
+      const link = document.createElement("a");
+      link.href = item.href;
+      link.textContent = item.label;
+
+      if (currentPage === item.href) {
+        link.setAttribute("aria-current", "page");
+      }
+
+      nav.appendChild(link);
+    });
+  });
+
+  document.querySelectorAll(".header-actions .icon-link").forEach((link) => {
+    link.remove();
+  });
+});
+document.addEventListener("DOMContentLoaded", () => {
+  const productGrid = document.querySelector("[data-product-grid]");
+  const productCards = Array.from(document.querySelectorAll(".product-card"));
+  const searchInput = document.querySelector("[data-product-search]");
+  const sortSelect = document.querySelector("[data-sort-products]");
+  const resultCount = document.querySelector("[data-result-count]");
+  const emptyState = document.querySelector("[data-empty-state]");
+  const filterInputs = Array.from(document.querySelectorAll("[data-filter]"));
+
+  if (!productGrid || !searchInput || productCards.length === 0) {
+    return;
+  }
+
+  const normalize = (text) => {
+    return String(text || "")
+      .toLowerCase()
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .trim();
+  };
+
+  const searchSynonyms = {
+    "pflegeleicht": ["pflegeleicht", "einfach", "robust", "anfanger", "starter", "easy", "very-low"],
+    "wenig": ["wenig", "low", "schatten", "halbschatten", "halbschattig"],
+    "licht": ["licht", "hell", "low", "medium", "bright", "halbschattig"],
+    "wenig licht": ["wenig licht", "low", "schatten", "halbschatten", "zz plant", "sansevieria"],
+    "buro": ["buro", "office", "arbeitsplatz"],
+    "schlafzimmer": ["schlafzimmer", "bedroom"],
+    "wohnzimmer": ["wohnzimmer", "living"],
+    "bad": ["bad", "bathroom", "luftfeuchtigkeit"],
+    "zubehor": ["zubehor", "topf", "erde", "giesskanne", "starter set"],
+    "topf": ["topf", "keramik", "sand", "ubertopf"],
+    "erde": ["erde", "pflanzenerde", "bio"],
+    "giessen": ["giessen", "wasser", "giesskanne"]
+  };
+
+  function getSearchTerms(query) {
+    const normalizedQuery = normalize(query);
+
+    if (!normalizedQuery) {
+      return [];
+    }
+
+    const words = normalizedQuery.split(/\s+/);
+    const terms = new Set([normalizedQuery, ...words]);
+
+    Object.entries(searchSynonyms).forEach(([key, values]) => {
+      if (normalizedQuery.includes(key) || words.includes(key)) {
+        values.forEach((value) => terms.add(normalize(value)));
+      }
+    });
+
+    return Array.from(terms).filter(Boolean);
+  }
+
+  function getCardSearchText(card) {
+    const datasetText = Object.values(card.dataset).join(" ");
+
+    return normalize(`
+      ${datasetText}
+      ${card.textContent}
+    `);
+  }
+
+  function getCheckedValues(filterName) {
+    return filterInputs
+      .filter((input) => input.dataset.filter === filterName && input.checked)
+      .map((input) => input.value);
+  }
+
+  function matchesAnyFilter(cardValue, selectedValues) {
+    if (selectedValues.length === 0) {
+      return true;
+    }
+
+    return selectedValues.some((value) => String(cardValue || "").includes(value));
+  }
+
+  function applyEnhancedProductSearch() {
+    const searchTerms = getSearchTerms(searchInput.value);
+    const selectedLevels = getCheckedValues("level");
+    const selectedLights = getCheckedValues("light");
+    const selectedRooms = getCheckedValues("room");
+
+    let visibleCards = productCards.filter((card) => {
+      const cardText = getCardSearchText(card);
+
+      const matchesSearch =
+        searchTerms.length === 0 ||
+        searchTerms.some((term) => cardText.includes(term));
+
+      const matchesLevel = matchesAnyFilter(card.dataset.level, selectedLevels);
+      const matchesLight = matchesAnyFilter(card.dataset.light, selectedLights);
+      const matchesRoom = matchesAnyFilter(card.dataset.room, selectedRooms);
+
+      return matchesSearch && matchesLevel && matchesLight && matchesRoom;
+    });
+
+    if (sortSelect) {
+      visibleCards = visibleCards.sort((a, b) => {
+        const priceA = Number(a.dataset.price);
+        const priceB = Number(b.dataset.price);
+
+        if (sortSelect.value === "price-asc") {
+          return priceA - priceB;
+        }
+
+        if (sortSelect.value === "price-desc") {
+          return priceB - priceA;
+        }
+
+        return 0;
+      });
+    }
+
+    productCards.forEach((card) => {
+      card.hidden = true;
+    });
+
+    visibleCards.forEach((card) => {
+      card.hidden = false;
+      productGrid.appendChild(card);
+    });
+
+    if (resultCount) {
+      resultCount.textContent = String(visibleCards.length);
+    }
+
+    if (emptyState) {
+      emptyState.hidden = visibleCards.length > 0;
+    }
+  }
+
+  searchInput.addEventListener("input", applyEnhancedProductSearch);
+
+  if (sortSelect) {
+    sortSelect.addEventListener("change", applyEnhancedProductSearch);
+  }
+
+  filterInputs.forEach((input) => {
+    input.addEventListener("change", applyEnhancedProductSearch);
+  });
+
+  window.setTimeout(applyEnhancedProductSearch, 0);
+});
