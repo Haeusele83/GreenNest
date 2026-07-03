@@ -2671,3 +2671,92 @@ button,
     animation-iteration-count: 1 !important;
   }
 }
+/* =========================================================
+   GreenNest – Demo-Modus
+   ========================================================= */
+
+.demo-panel {
+  margin: 0 auto 34px;
+  padding: 18px;
+  background: #ffffff;
+  border: 1px solid rgba(31, 107, 67, 0.18);
+  border-radius: 22px;
+  box-shadow: var(--shadow-card);
+}
+
+.demo-panel-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 18px;
+}
+
+.demo-panel h2 {
+  margin: 0 0 4px;
+  font-size: 1.05rem;
+  letter-spacing: -0.02em;
+}
+
+.demo-panel p {
+  margin: 0;
+  color: var(--color-muted);
+  font-size: 0.92rem;
+}
+
+.demo-panel-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.demo-panel .btn {
+  min-height: 42px;
+  padding: 9px 15px;
+  font-size: 0.88rem;
+}
+
+.demo-status {
+  margin-top: 12px;
+  color: var(--color-primary-dark);
+  font-size: 0.9rem;
+  font-weight: 850;
+}
+
+.demo-status[hidden] {
+  display: none !important;
+}
+
+@media (max-width: 760px) {
+  .demo-panel-inner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .demo-panel-actions,
+  .demo-panel .btn {
+    width: 100%;
+  }
+}
+/* =========================================================
+   GreenNest – WCAG-Fix für Karten-Fokus
+   ========================================================= */
+
+.variant-option input:focus-visible + span,
+.delivery-option-card input:focus-visible + .delivery-option-content,
+.payment-option-card input:focus-visible + .payment-option-content {
+  outline: 4px solid rgba(31, 107, 67, 0.42);
+  outline-offset: 4px;
+  border-color: var(--color-primary);
+}
+
+.finder-question input:focus-visible {
+  outline: 4px solid rgba(31, 107, 67, 0.42);
+  outline-offset: 3px;
+}
+
+.wishlist-toggle:focus-visible,
+.cart-pill:focus-visible,
+.wishlist-pill:focus-visible {
+  outline: 4px solid rgba(31, 107, 67, 0.42);
+  outline-offset: 4px;
+}

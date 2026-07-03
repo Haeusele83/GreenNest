@@ -2504,3 +2504,266 @@ document.addEventListener("DOMContentLoaded", () => {
 
   window.setTimeout(applyEnhancedProductSearch, 0);
 });
+document.addEventListener("DOMContentLoaded", () => {
+  const DEMO_KEYS = [
+    "greennestCart",
+    "greennestWishlist",
+    "greennestAddress",
+    "greennestDelivery",
+    "greennestPayment",
+    "greennestOrder"
+  ];
+
+  const demoProducts = {
+    "monstera-easy": {
+      name: "Monstera Easy",
+      price: 34.9
+    },
+    "keramiktopf-sand": {
+      name: "Keramiktopf Sand",
+      price: 16.9
+    },
+    "sansevieria-calm": {
+      name: "Sansevieria Calm",
+      price: 29.9
+    }
+  };
+
+  const formatCHF = (value) => `CHF ${Number(value).toFixed(2)}`;
+
+  function writeStorage(key, value) {
+    localStorage.setItem(key, JSON.stringify(value));
+  }
+
+  function readStorage(key, fallback) {
+    try {
+      return JSON.parse(localStorage.getItem(key)) || fallback;
+    } catch {
+      return fallback;
+    }
+  }
+
+  function calculateDemoTotals(cart, deliveryPrice) {
+    const subtotal = cart.reduce((sum, item) => {
+      const product = demoProducts[item.id];
+
+      if (!product) {
+        return sum;
+      }
+
+      return sum + product.price * item.quantity;
+    }, 0);
+
+    const shipping = cart.length > 0 ? deliveryPrice : 0;
+    const total = subtotal + shipping;
+
+    return {
+      subtotal,
+      shipping,
+      total
+    };
+  }
+
+  function updateHeaderCounts() {
+    const cart = readStorage("greennestCart", []);
+    const wishlist = readStorage("greennestWishlist", []);
+
+    const cartCount = cart.reduce((sum, item) => sum + item.quantity, 0);
+
+    document.querySelectorAll(".cart-count").forEach((count) => {
+      count.textContent = String(cartCount);
+    });
+
+    document.querySelectorAll(".wishlist-count").forEach((count) => {
+      count.textContent = String(wishlist.length);
+    });
+  }
+
+  function showDemoStatus(message) {
+    const status = document.querySelector("[data-demo-status]");
+
+    if (status) {
+      status.hidden = false;
+      status.textContent = message;
+    }
+
+    const toast = document.querySelector("[data-toast]");
+
+    if (toast) {
+      toast.textContent = message;
+      toast.hidden = false;
+
+      window.setTimeout(() => {
+        toast.hidden = true;
+      }, 2400);
+    }
+  }
+
+  function loadDemoData() {
+    const demoCart = [
+      {
+        id: "monstera-easy",
+        quantity: 1
+      },
+      {
+        id: "keramiktopf-sand",
+        quantity: 1
+      }
+    ];
+
+    const demoWishlist = [
+      "sansevieria-calm",
+      "calathea-soft",
+      "zz-plant-robust"
+    ];
+
+    const demoAddress = {
+      firstName: "Lea",
+      lastName: "Muster",
+      email: "lea.muster@example.ch",
+      street: "Musterstrasse 12",
+      additionalAddress: "2. Stock links",
+      zip: "3000",
+      city: "Bern",
+      country: "Schweiz",
+      deliveryNote: "Bitte vor der Wohnungstür abstellen.",
+      billingSame: true
+    };
+
+    const demoDelivery = {
+      option: "standard",
+      title: "Standardlieferung",
+      price: 6.9
+    };
+
+    const demoPayment = {
+      option: "twint",
+      title: "TWINT"
+    };
+
+    const totals = calculateDemoTotals(demoCart, demoDelivery.price);
+
+    const demoOrder = {
+      orderNumber: `GN-DEMO-${new Date().getFullYear()}`,
+      items: demoCart,
+      address: demoAddress,
+      delivery: demoDelivery,
+      payment: demoPayment,
+      subtotal: totals.subtotal,
+      shipping: totals.shipping,
+      total: totals.total,
+      createdAt: new Date().toISOString()
+    };
+
+    writeStorage("greennestCart", demoCart);
+    writeStorage("greennestWishlist", demoWishlist);
+    writeStorage("greennestAddress", demoAddress);
+    writeStorage("greennestDelivery", demoDelivery);
+    writeStorage("greennestPayment", demoPayment);
+    writeStorage("greennestOrder", demoOrder);
+
+    updateHeaderCounts();
+
+    showDemoStatus(
+      `Demo-Daten geladen: Warenkorb ${formatCHF(totals.total)}, Wunschliste und Checkout-Daten sind vorbereitet.`
+    );
+  }
+
+  function resetDemoData() {
+    DEMO_KEYS.forEach((key) => {
+      localStorage.removeItem(key);
+    });
+
+    updateHeaderCounts();
+
+    showDemoStatus("Demo-Daten wurden zurückgesetzt.");
+
+    const currentPage = window.location.pathname.split("/").pop() || "index.html";
+
+    if (
+      currentPage === "warenkorb.html" ||
+      currentPage === "wunschliste.html" ||
+      currentPage === "checkout-review.html" ||
+      currentPage === "bestaetigung.html" ||
+      currentPage === "pflegehinweise.html"
+    ) {
+      window.setTimeout(() => {
+        window.location.reload();
+      }, 500);
+    }
+  }
+
+  function injectDemoPanel() {
+    const currentPage = window.location.pathname.split("/").pop() || "index.html";
+
+    if (currentPage !== "index.html" && currentPage !== "") {
+      return;
+    }
+
+    const main = document.querySelector("#main-content");
+
+    if (!main || document.querySelector("[data-demo-panel]")) {
+      return;
+    }
+
+    const panel = document.createElement("section");
+    panel.className = "container demo-panel";
+    panel.dataset.demoPanel = "";
+
+    panel.innerHTML = `
+      <div class="demo-panel-inner">
+        <div>
+          <h2>Demo-Modus</h2>
+          <p>
+            Lädt Beispiel-Warenkorb, Wunschliste, Adresse, Lieferung, Zahlung und Bestellbestätigung.
+          </p>
+        </div>
+
+        <div class="demo-panel-actions">
+          <button class="btn btn-primary" type="button" data-load-demo>
+            Demo-Daten laden
+          </button>
+
+          <button class="btn btn-secondary" type="button" data-reset-demo>
+            Demo zurücksetzen
+          </button>
+
+          <a class="btn btn-secondary" href="warenkorb.html">
+            Demo testen
+          </a>
+        </div>
+      </div>
+
+      <p class="demo-status" data-demo-status hidden></p>
+    `;
+
+    main.prepend(panel);
+  }
+
+  document.addEventListener("click", (event) => {
+    const loadButton = event.target.closest("[data-load-demo]");
+    const resetButton = event.target.closest("[data-reset-demo]");
+
+    if (loadButton) {
+      loadDemoData();
+      return;
+    }
+
+    if (resetButton) {
+      resetDemoData();
+    }
+  });
+
+  const urlParams = new URLSearchParams(window.location.search);
+
+  if (urlParams.get("demo") === "1") {
+    loadDemoData();
+  }
+
+  if (urlParams.get("resetDemo") === "1") {
+    resetDemoData();
+  }
+
+  injectDemoPanel();
+  updateHeaderCounts();
+});
